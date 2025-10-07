@@ -7,7 +7,7 @@ from iden_q_auto_platform.models.tenants.tenant_base import (
 
 from enum import Enum
 
-from server.aws.cdk.constants import COMPANY, AWS_DEFAULT_ACCOUNT, AWS_DEFAULT_REGION
+from constants import COMPANY, AWS_DEFAULT_ACCOUNT, AWS_DEFAULT_REGION
 
 
 class Products(Enum):

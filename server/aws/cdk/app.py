@@ -9,11 +9,11 @@ This script sets up the AWS CDK application for the Morales Corp tenant.
 """
 
 from aws_cdk import App, Environment
-from server.aws.cdk.tenants.example import TenantExample
-from server.aws.cdk.stacks.playground_stack.component import PlaygroundStack
+from tenants.example import TenantExample
+from stacks.playground_stack.component import PlaygroundStack
 
 
-app = App()
+app: App = App()
 
 # region tenants
 tenant_example = TenantExample()
@@ -29,4 +29,4 @@ tenant_example_playground_stack = PlaygroundStack(
 )
 # endregion
 
-app.synth()
+app.synth()  # type: ignore
