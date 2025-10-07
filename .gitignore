@@ -59,3 +59,5 @@ cdk.out/*
 # cdk-pug-platform
 **/iden_q_auto_platform.egg-info/**
 **/*.egg
+
+.yarn/cache/*

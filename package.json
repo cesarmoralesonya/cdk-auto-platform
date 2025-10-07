@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "name": "iden-q-auto-platform",
+    "packageManager": "yarn@3.2.1",
+    "scripts": {
+        "cdk": "cdk"
+    },
+    "dependencies": {
+        "aws-cdk": "^2.1029.4"
+    }
+}
