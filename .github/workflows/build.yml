@@ -2,10 +2,16 @@ name: Build and Test
 
 on:
     push:
+        paths:
+            - 'src/**'
+            - '.github/**'
         branches:
             - main
             - develop
     pull_request:
+        paths:
+            - 'src/**'
+            - '.github/**'
         branches:
             - main
             - develop
