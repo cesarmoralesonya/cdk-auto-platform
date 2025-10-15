@@ -78,17 +78,20 @@ pip install -r requirements.txt
 The package is automatically published via GitHub Actions when:
 
 1. **Automatic**: Push a version tag
+
    ```bash
    git tag 1.0.46
    git push origin 1.0.46
    ```
 
 2. **Semi-Automatic**: Use the release workflow
+
    ```bash
    gh workflow run release.yml -f bump_type=patch
    ```
 
 3. **Manual**: Trigger the publish workflow
+
    ```bash
    gh workflow run publish.yml
    ```
@@ -97,7 +100,7 @@ See [.github/README.md](.github/README.md) for detailed workflow documentation.
 
 ## Project Structure
 
-```
+```txt
 src/iden_q_auto_platform/
 ├── build/              # Build utilities for CDK constructs
 ├── models/             # Data models and configurations
@@ -153,5 +156,6 @@ MIT License - See [LICENSE](LICENSE) file for details
 ## Support
 
 For issues and questions:
+
 - GitHub Issues: [iden-q/iden-q-auto-platform/issues](https://github.com/iden-q/iden-q-auto-platform/issues)
 - Documentation: [Wiki](https://github.com/iden-q/iden-q-auto-platform/wiki)
