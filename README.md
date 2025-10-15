@@ -21,7 +21,7 @@ For GitHub Packages access, configure your pip to authenticate:
 
 ```bash
 # Using environment variable
-export PIP_EXTRA_INDEX_URL=https://USERNAME:TOKEN@maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/
+export PIP_EXTRA_INDEX_URL=https://USERNAME:TOKEN@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/
 pip install iden_q_auto_platform
 ```
 

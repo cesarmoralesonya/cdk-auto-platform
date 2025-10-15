@@ -147,7 +147,7 @@ export GITHUB_TOKEN="your_personal_access_token"
 
 # Install the package
 pip install \
-  --index-url "https://__token__:${GITHUB_TOKEN}@maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/" \
+  --index-url "https://__token__:${GITHUB_TOKEN}@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/" \
   iden_q_auto_platform
 
 # Verify installation

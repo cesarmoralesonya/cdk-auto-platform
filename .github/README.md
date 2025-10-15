@@ -91,7 +91,7 @@ index-servers =
     github
 
 [github]
-repository = https://maven.pkg.github.com/iden-q/iden-q-auto-platform
+repository = https://pypi.pkg.github.com/iden-q/iden-q-auto-platform
 username = YOUR_GITHUB_USERNAME
 password = YOUR_GITHUB_TOKEN
 ```
@@ -99,13 +99,13 @@ password = YOUR_GITHUB_TOKEN
 1. **Install the package:**
 
 ```bash
-pip install --index-url https://maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/ iden_q_auto_platform
+pip install --index-url https://pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/ iden_q_auto_platform
 ```
 
 Or using environment variables:
 
 ```bash
-export PIP_EXTRA_INDEX_URL=https://YOUR_GITHUB_USERNAME:YOUR_GITHUB_TOKEN@maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/
+export PIP_EXTRA_INDEX_URL=https://YOUR_GITHUB_USERNAME:YOUR_GITHUB_TOKEN@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/
 pip install iden_q_auto_platform
 ```
 

@@ -108,7 +108,7 @@ export GITHUB_TOKEN="your-personal-access-token"
 
 # Install
 pip install \
-  --index-url "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/" \
+  --index-url "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/" \
   iden_q_auto_platform
 ```
 
@@ -116,7 +116,7 @@ pip install \
 
 ```text
 # requirements.txt
---index-url https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/
+--index-url https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/
 iden_q_auto_platform==1.0.45
 ```
 

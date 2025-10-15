@@ -81,7 +81,7 @@ jobs:
 
                   # Alternative: Upload to GitHub Packages PyPI repository
                   python -m twine upload \
-                    --repository-url https://maven.pkg.github.com/${{ github.repository }} \
+                    --repository-url https://pypi.pkg.github.com/${{ github.repository }} \
                     --username ${{ github.actor }} \
                     --password ${{ secrets.GITHUB_TOKEN }} \
                     dist/* || true

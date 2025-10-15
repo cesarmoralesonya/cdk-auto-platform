@@ -222,7 +222,7 @@ Installation:
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                                                                          │
 │  pip install \                                                          │
-│    --index-url https://USER:TOKEN@maven.pkg.github.com/...             │
+│    --index-url https://USER:TOKEN@pypi.pkg.github.com/...             │
 │    iden_q_auto_platform                                                 │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
