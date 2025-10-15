@@ -62,41 +62,41 @@ jobs:
           python -m build
           ls -la dist/
 
-            - name: Check package
-              run: |
-                  cd src
-                  twine check dist/*
+      - name: Check package
+        run: |
+          cd src
+          twine check dist/*
 
-            - name: Create GitHub Release
-              uses: softprops/action-gh-release@v1
-              with:
-                  files: src/dist/*
-                  tag_name: ${{ steps.get_version.outputs.version }}
-                  generate_release_notes: true
-                  body: |
-                      ## iden_q_auto_platform ${{ steps.get_version.outputs.version }}
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: src/dist/*
+          tag_name: ${{ steps.get_version.outputs.version }}
+          generate_release_notes: true
+          body: |
+            ## iden_q_auto_platform ${{ steps.get_version.outputs.version }}
 
-                      ### Installation
+            ### Installation
 
-                      Download the wheel file from the assets below and install:
+            Download the wheel file from the assets below and install:
 
-                      ```bash
-                      pip install iden_q_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
-                      ```
+            ```bash
+            pip install iden_q_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
+            ```
 
-                      Or install directly from this release:
+            Or install directly from this release:
 
-                      ```bash
-                      pip install https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/iden_q_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
-                      ```
+            ```bash
+            pip install https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/iden_q_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
+            ```
 
-                      ### What's Changed
-                      See the [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/src/CHANGELOG.md) for details.
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ### What's Changed
+            See the [CHANGELOG](https://github.com/${{ github.repository }}/blob/main/src/CHANGELOG.md) for details.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Upload artifacts
-              uses: actions/upload-artifact@v4
-              with:
-                  name: python-package-distributions
-                  path: src/dist/
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: src/dist/
