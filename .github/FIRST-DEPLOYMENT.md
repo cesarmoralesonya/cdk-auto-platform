@@ -72,24 +72,6 @@ gh workflow run release.yml -f bump_type=patch -f create_release=true
 gh run watch
 ```
 
-#### Option B: Manual Tag
-
-```bash
-# Create and push tag
-git tag 1.0.46
-git push origin 1.0.46
-
-# Monitor the workflow
-gh run watch
-```
-
-- [ ] Release workflow triggered
-- [ ] Version bumped successfully
-- [ ] Publish workflow triggered
-- [ ] Package built
-- [ ] Package published to GitHub Packages
-- [ ] GitHub Release created
-
 ### Step 4: Verify Publication
 
 ```bash
