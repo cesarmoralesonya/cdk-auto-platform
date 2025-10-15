@@ -69,7 +69,7 @@ version = { attr = "iden_q_auto_platform.__version__" }
 
 [tool.bumpversion]
 allow_dirty = true
-current_version = "1.0.47"
+current_version = "1.0.48"
 commit = true
 commit_args = "--no-verify"
 tag = true
