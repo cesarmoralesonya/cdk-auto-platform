@@ -52,8 +52,15 @@ jobs:
               id: bump
               run: |
                   cd src
+                  # Show current version before bump
+                  echo "Current version:"
+                  bump-my-version show current_version
+
+                  # Perform version bump
                   bump-my-version bump ${{ github.event.inputs.bump_type }} --verbose
-                  NEW_VERSION=$(grep 'current_version = ' pyproject.toml | sed 's/.*current_version = "\(.*\)"/\1/')
+
+                  # Extract new version using Python
+                  NEW_VERSION=$(python -c "import tomllib; f=open('pyproject.toml','rb'); data=tomllib.load(f); print(data['tool']['bumpversion']['current_version'])")
                   echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
                   echo "New version: $NEW_VERSION"
 

@@ -77,13 +77,11 @@ tag_name = "{new_version}"
 parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
 serialize = ["{major}.{minor}.{patch}"]
 message = "Version updated from {current_version} to {new_version}"
+search = "{current_version}"
+replace = "{new_version}"
 
 [[tool.bumpversion.files]]
 filename = "pyproject.toml"
-search = 'current_version = "{current_version}"'
-replace = 'current_version = "{new_version}"'
 
 [[tool.bumpversion.files]]
 filename = "iden_q_auto_platform/__init__.py"
-search = '__version__ = "{current_version}"'
-replace = '__version__ = "{new_version}"'
