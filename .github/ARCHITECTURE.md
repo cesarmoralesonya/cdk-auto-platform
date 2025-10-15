@@ -37,7 +37,7 @@
 │  │  Bump Version Job               │                                   │
 │  ├─────────────────────────────────┤                                   │
 │  │  1. Checkout code               │                                   │
-│  │  2. Install bump2version        │                                   │
+│  │  2. Install bump-my-version     │                                   │
 │  │  3. Bump version number         │                                   │
 │  │  4. Commit and tag              │                                   │
 │  │  5. Push to repository          │                                   │
@@ -148,7 +148,7 @@ Stored in:
 ├── src/pyproject.toml [tool.bumpversion] current_version = "1.0.45"
 └── src/iden_q_auto_platform/__init__.py __version__ = "1.0.45"
 
-Managed by: bump2version
+Managed by: bump-my-version
 
 Version Flow:
 ┌──────────────┐
@@ -158,10 +158,10 @@ Version Flow:
 └──────┬───────┘
        │
        ▼
-┌──────────────────────┐
-│ bump2version updates │
-│ both files           │
-└──────┬───────────────┘
+┌──────────────────────────┐
+│ bump-my-version updates  │
+│ both files               │
+└──────┬─────────────────── ┘
        │
        ▼
 ┌──────────────────────┐

@@ -24,7 +24,7 @@ A complete GitHub Actions CI/CD pipeline for packaging and publishing the `iden_
 3. **`.github/workflows/release.yml`**
    - Automated version bumping workflow
    - Manual trigger with bump type selection (patch/minor/major)
-   - Uses `bump2version` for version management
+   - Uses `bump-my-version` for version management
    - Automatically calls publish workflow after bumping
 
 ### Python Package Files
@@ -191,7 +191,7 @@ Versions are managed in:
 - `src/pyproject.toml` → `[tool.bumpversion] current_version`
 - `src/iden_q_auto_platform/__init__.py` → `__version__`
 
-Use `bump2version` or the release workflow to keep them in sync.
+Use `bump-my-version` or the release workflow to keep them in sync.
 
 ## 🐛 Troubleshooting
 

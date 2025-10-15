@@ -11,18 +11,16 @@ IaC platform engineering library based on AWS CDK
 
 ## Installation
 
-### From GitHub Packages
+### From GitHub Releases
+
+Download the wheel or source distribution from the [latest release](https://github.com/iden-q/iden-q-auto-platform/releases):
 
 ```bash
-pip install iden_q_auto_platform
-```
+# Install from wheel
+pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46-py3-none-any.whl
 
-For GitHub Packages access, configure your pip to authenticate:
-
-```bash
-# Using environment variable
-export PIP_EXTRA_INDEX_URL=https://USERNAME:TOKEN@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/
-pip install iden_q_auto_platform
+# Or install from source tarball
+pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46.tar.gz
 ```
 
 ### From Source

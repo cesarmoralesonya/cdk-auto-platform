@@ -25,14 +25,14 @@ This directory contains GitHub Actions workflows for the `iden_q_auto_platform` 
 - Automatically when a version tag is pushed (e.g., `1.0.46`)
 - Manually via workflow dispatch
 
-**Purpose:** Builds and publishes the package to GitHub Packages (PyPI-compatible registry).
+**Purpose:** Builds and publishes the package as GitHub Release artifacts.
 
 **What it does:**
 
-- Builds the Python package
-- Publishes to GitHub Packages
-- Creates a GitHub Release with the built distributions
-- Uploads package artifacts
+- Builds the Python package (wheel and source distribution)
+- Validates the package with `twine check`
+- Creates a GitHub Release with the built distributions attached
+- Uploads package artifacts for download
 
 **Manual trigger:**
 
@@ -50,7 +50,7 @@ gh workflow run publish.yml
 
 **What it does:**
 
-- Bumps the version (patch/minor/major) using `bump2version`
+- Bumps the version (patch/minor/major) using `bump-my-version`
 - Commits and tags the new version
 - Triggers the publish workflow
 - Creates a GitHub release
@@ -68,45 +68,43 @@ gh workflow run publish.yml
 - Bump type: `patch`
 - New version: `1.0.46`
 
-## Setting up GitHub Packages
+## Setting up Package Distribution
 
-### Configure GitHub Packages for Publishing
+### Package Distribution via GitHub Releases
 
-The workflows are already configured to publish to GitHub Packages. Make sure your repository has the following:
+The workflows automatically publish packages as GitHub Release artifacts. This approach:
 
-1. **Permissions**: The workflows use `GITHUB_TOKEN` which is automatically provided by GitHub Actions
-2. **Package visibility**: Configure in repository settings under Packages
+1. **No authentication needed**: Anyone can download releases
+2. **Simple installation**: Direct pip install from GitHub URLs
+3. **Version tracking**: Each release is clearly versioned and tagged
+4. **No additional setup**: Works out of the box with `GITHUB_TOKEN`
 
-### Installing from GitHub Packages
+### Installing Published Packages
 
-To install the package from GitHub Packages, users need to:
+To install the package from GitHub Releases:
 
-1. **Create a Personal Access Token (PAT)** with `read:packages` scope
-2. **Configure pip** to use GitHub Packages:
+### Method 1: Direct URL (Recommended)
 
 ```bash
-# Add to ~/.pypirc
-[distutils]
-index-servers =
-    github
-
-[github]
-repository = https://pypi.pkg.github.com/iden-q/iden-q-auto-platform
-username = YOUR_GITHUB_USERNAME
-password = YOUR_GITHUB_TOKEN
+# Install latest release (replace version number)
+pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46-py3-none-any.whl
 ```
 
-1. **Install the package:**
+### Method 2: Download and Install
 
 ```bash
-pip install --index-url https://pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/ iden_q_auto_platform
+# Download from releases page
+# https://github.com/iden-q/iden-q-auto-platform/releases
+
+# Install locally
+pip install ./iden_q_auto_platform-1.0.46-py3-none-any.whl
 ```
 
-Or using environment variables:
+### Method 3: Using requirements.txt
 
-```bash
-export PIP_EXTRA_INDEX_URL=https://YOUR_GITHUB_USERNAME:YOUR_GITHUB_TOKEN@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/
-pip install iden_q_auto_platform
+```text
+# requirements.txt
+iden_q_auto_platform @ https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46-py3-none-any.whl
 ```
 
 ## Publishing to PyPI (Optional)
@@ -130,7 +128,7 @@ If you want to publish to the public PyPI instead of or in addition to GitHub Pa
 
 ## Version Management
 
-The project uses `bump2version` for version management. The version is stored in two places:
+The project uses `bump-my-version` for version management. The version is stored in two places:
 
 - `src/pyproject.toml` (field: `tool.bumpversion.current_version`)
 - `src/iden_q_auto_platform/__init__.py` (variable: `__version__`)
@@ -141,8 +139,8 @@ If you need to bump the version manually:
 
 ```bash
 cd src
-pip install bump2version
-bump2version patch  # or minor, or major
+pip install bump-my-version
+bump-my-version bump patch  # or minor, or major
 git push origin main --follow-tags
 ```
 

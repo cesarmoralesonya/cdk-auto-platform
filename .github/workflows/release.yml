@@ -41,7 +41,7 @@ jobs:
             - name: Install dependencies
               run: |
                   python -m pip install --upgrade pip
-                  pip install bump2version
+                  pip install bump-my-version
 
             - name: Configure Git
               run: |
@@ -52,7 +52,7 @@ jobs:
               id: bump
               run: |
                   cd src
-                  bump2version ${{ github.event.inputs.bump_type }} --verbose
+                  bump-my-version bump ${{ github.event.inputs.bump_type }} --verbose
                   NEW_VERSION=$(grep 'current_version = ' pyproject.toml | sed 's/.*current_version = "\(.*\)"/\1/')
                   echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
                   echo "New version: $NEW_VERSION"
