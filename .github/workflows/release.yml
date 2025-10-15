@@ -71,4 +71,6 @@ jobs:
     publish:
         needs: bump-version
         uses: ./.github/workflows/publish.yml
+        with:
+            version: ${{ needs.bump-version.outputs.new_version }}
         secrets: inherit
