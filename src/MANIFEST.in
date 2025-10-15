@@ -1,0 +1,17 @@
+# MANIFEST.in
+# Include documentation and configuration files
+include README.md
+include LICENSE
+include CHANGELOG.md
+include pyproject.toml
+
+# Include all Python files
+recursive-include iden_q_auto_platform *.py
+
+# Exclude development and build files
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .git*
+exclude .gitignore

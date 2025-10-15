@@ -1,0 +1,240 @@
+# CI/CD Quick Reference
+
+## 🚀 Publishing Workflows
+
+### Option 1: Automatic Version Bump and Publish (Recommended)
+
+Use the GitHub UI or CLI to trigger a release:
+
+```bash
+# Using GitHub CLI
+gh workflow run release.yml -f bump_type=patch -f create_release=true
+
+# Options for bump_type:
+# - patch: 1.0.45 → 1.0.46 (bug fixes)
+# - minor: 1.0.45 → 1.1.0 (new features)
+# - major: 1.0.45 → 2.0.0 (breaking changes)
+```
+
+**What happens:**
+
+1. ✅ Bumps version in `pyproject.toml` and `__init__.py`
+2. ✅ Commits and pushes the changes
+3. ✅ Creates a git tag
+4. ✅ Builds the package
+5. ✅ Publishes to GitHub Packages
+6. ✅ Creates a GitHub Release
+
+### Option 2: Manual Tag Push
+
+```bash
+# Make sure versions are in sync
+./scripts/check-version.sh
+
+# Create and push tag
+git tag 1.0.46
+git push origin 1.0.46
+
+# This triggers the publish workflow automatically
+```
+
+### Option 3: Manual Workflow Trigger
+
+```bash
+# Trigger publish without version bump
+gh workflow run publish.yml
+```
+
+## 🔍 Checking Build Status
+
+### View Workflow Runs
+
+```bash
+# List recent workflow runs
+gh run list --workflow=build.yml
+
+# Watch a running workflow
+gh run watch
+```
+
+### Check Package on GitHub
+
+```bash
+# Open packages page
+open "https://github.com/iden-q/iden-q-auto-platform/packages"
+```
+
+## 🧪 Local Testing Before Publishing
+
+### Build and Test Locally
+
+```bash
+# Build the package
+./scripts/build-local.sh
+
+# Check version consistency
+./scripts/check-version.sh
+
+# Install locally for testing
+cd src
+pip install -e .
+
+# Or install from dist
+pip install dist/iden_q_auto_platform-*.whl
+```
+
+### Test in Another Project
+
+```bash
+# Create test environment
+python3.12 -m venv test-env
+source test-env/bin/activate
+
+# Install local build
+pip install /path/to/iden-q-auto-platform/src/dist/iden_q_auto_platform-*.whl
+
+# Test imports
+python -c "import iden_q_auto_platform; print(iden_q_auto_platform.__version__)"
+```
+
+## 📦 Installing Published Package
+
+### From GitHub Packages
+
+```bash
+# Configure authentication
+export GITHUB_USERNAME="your-username"
+export GITHUB_TOKEN="your-personal-access-token"
+
+# Install
+pip install \
+  --index-url "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/" \
+  iden_q_auto_platform
+```
+
+### Using requirements.txt
+
+```text
+# requirements.txt
+--index-url https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@maven.pkg.github.com/iden-q/iden-q-auto-platform/simple/
+iden_q_auto_platform==1.0.45
+```
+
+## 🐛 Troubleshooting
+
+### Version Mismatch
+
+```bash
+# Check versions
+./scripts/check-version.sh
+
+# Fix manually if needed
+cd src
+# Edit pyproject.toml and __init__.py to match
+```
+
+### Build Failures
+
+```bash
+# Clean and rebuild
+cd src
+rm -rf dist/ build/ *.egg-info
+python -m build
+
+# Check package
+twine check dist/*
+```
+
+### Authentication Issues
+
+```bash
+# Verify GitHub token has correct permissions
+# Required scopes: read:packages, write:packages, repo
+
+# Test token
+curl -H "Authorization: token $GITHUB_TOKEN" \
+  https://api.github.com/user/packages
+```
+
+### Workflow Failures
+
+```bash
+# View failed workflow
+gh run list --workflow=publish.yml --limit 5
+
+# View logs
+gh run view WORKFLOW_RUN_ID --log
+
+# Re-run failed workflow
+gh run rerun WORKFLOW_RUN_ID
+```
+
+## 📋 Common Tasks
+
+### Update Dependencies
+
+```bash
+cd src
+# Edit requirements.in or pyproject.toml
+pip-compile requirements.in
+pip install -r requirements.txt
+```
+
+### Format Code
+
+```bash
+# Run formatting task
+# Uses autopep8 and black
+source .venv/bin/activate
+cd src
+autopep8 --in-place --recursive --aggressive --max-line-length 120 iden_q_auto_platform
+black --line-length 120 iden_q_auto_platform
+flake8 iden_q_auto_platform
+```
+
+### Run CDK Commands
+
+```bash
+# List stacks
+source .venv/bin/activate
+PYTHONPATH="src:server/aws/cdk" cdk ls
+
+# Synthesize
+PYTHONPATH="src:server/aws/cdk" cdk synth
+
+# Deploy
+PYTHONPATH="src:server/aws/cdk" cdk deploy --profile YOUR_PROFILE
+```
+
+## 🔐 Required Secrets
+
+The workflows use these secrets (automatically provided):
+
+- `GITHUB_TOKEN`: Automatically provided by GitHub Actions
+  - Used for: Publishing to GitHub Packages, creating releases
+
+No additional secrets are required unless publishing to PyPI.
+
+## 📊 Workflow Matrix
+
+| Workflow | Trigger | Purpose | Duration |
+|----------|---------|---------|----------|
+| Build and Test | Push/PR | Validate build | ~2-3 min |
+| Publish Package | Tag push | Publish to GitHub | ~3-5 min |
+| Create Release | Manual | Bump version & publish | ~5-7 min |
+
+## 🎯 Best Practices
+
+1. **Always test locally** before triggering workflows
+2. **Use release workflow** for version management
+3. **Follow semantic versioning**: patch for fixes, minor for features, major for breaking changes
+4. **Update CHANGELOG.md** before releasing
+5. **Test published package** in a clean environment before announcing
+6. **Keep versions in sync** (use check-version.sh)
+
+## 📚 Additional Resources
+
+- [GitHub Actions Workflows](.github/workflows/)
+- [Workflow Documentation](.github/README.md)
+- [Project README](../README.md)
+- [GitHub Packages Docs](https://docs.github.com/packages)
