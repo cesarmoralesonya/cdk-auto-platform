@@ -92,6 +92,11 @@ class TenantBase:
             raise ValueError("RDS blueprints are not defined for this tenant")
         return self._rds_blueprints
 
+    def local(self):
+        self.environment = AppEnvironment.LOCAL
+
+        return self
+
     def dev(self):
         self.environment = AppEnvironment.DEV
 
