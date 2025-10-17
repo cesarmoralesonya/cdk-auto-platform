@@ -4,7 +4,7 @@ iden_q_auto_platform - AWS CDK Platform Extension
 This CDK extension provides a platform for building CDK applications.
 """
 
-__version__ = "1.0.51"
+__version__ = "1.0.52"
 __author__ = "Cesar Morales"
 __email__ = "me@cesarmoralesonya.es"
 
