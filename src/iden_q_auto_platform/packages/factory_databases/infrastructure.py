@@ -53,7 +53,7 @@ class FactoryDatabases(Construct):
         self.lambda_functions: dict[str, lambda_.IFunction] = {}
         tenant_lambda_security_groups: dict[str, ec2.SecurityGroup] = {}
         for database_instance in database_instances:
-            environment_name = f"{tenant.company}-{tenant.environment.value}"
+            environment_name = f"{tenant.company}-{tenant.product}-{tenant.environment.value}"
 
             if is_unique:
                 CONSTRUCT_ID = "database-factory"

@@ -19,7 +19,7 @@ from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
 
 class LogGroupPug(PugModule[logs.LogGroup]):
     def __init__(self, scope: Construct, tenant: TenantBase, service_type: Enum):
-        LOG_GROUP_NAME = f"{tenant.company}-{tenant.environment.value}-{service_type.value}-log-group"
+        LOG_GROUP_NAME = f"{tenant.company}-{tenant.product}-{tenant.environment.value}-{service_type.value}-log-group"
 
         self.log_group = logs.LogGroup(
             scope,

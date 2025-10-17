@@ -33,7 +33,7 @@ class PowerBiBastion(Construct):
         super().__init__(scope, "powerbi-bastion", **kwargs)
 
         if tenant.environment == AppEnvironment.PROD:
-            environment_name = f"{tenant.company}-{tenant.environment.value}-{CrossPlatform.POWERBI.value}"
+            environment_name = f"{tenant.company}-{tenant.product}-{tenant.environment.value}-{CrossPlatform.POWERBI.value}"
             BASTION_SECURITY_GROUP_NAME = f"{environment_name}-bastion-security-group"
             BASTION_NAME = f"{environment_name}-bastion"
             operating_system: OperatingSystem = OperatingSystem.WINDOWS

@@ -26,6 +26,6 @@ class PlaygroundStack(
             tenant: TenantBase,
             **kwargs: Any
     ):
-        stack_id = f"playground-{tenant.company}-{tenant.environment.value}"
+        stack_id = f"playground-{tenant.company}-{tenant.product}-{tenant.environment.value}"
 
         super().__init__(scope, stack_id, **kwargs)

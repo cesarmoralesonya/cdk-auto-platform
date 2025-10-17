@@ -8,6 +8,6 @@ from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
 class CodeArtifactDomain(Construct):
     def __init__(self, scope: Construct, tenant: TenantBase, **kwargs):
         super().__init__(scope, "code-artifact-domain", **kwargs)
-        DOMAIN_NAME = f"{tenant.company}-{tenant.environment.value}"
+        DOMAIN_NAME = f"{tenant.company}-{tenant.product}-{tenant.environment.value}"
 
         self.domain = codeartifact.CfnDomain(self, DOMAIN_NAME, domain_name=DOMAIN_NAME)

@@ -104,7 +104,7 @@ class EcsFargateTaskDefinitionPug(PugModule[ecs.FargateTaskDefinition]):
     ) -> None:
         TASK_DEFINITION_SUFFIX = f"{params.service_type.value}-task-definition"
         TASK_DEFINITION_NAME = (
-            f"{tenant.company}-{tenant.environment.value}-{TASK_DEFINITION_SUFFIX}"
+            f"{tenant.company}-{tenant.product}-{tenant.environment.value}-{TASK_DEFINITION_SUFFIX}"
         )
 
         task_definition = ecs.FargateTaskDefinition(
@@ -121,7 +121,7 @@ class EcsFargateTaskDefinitionPug(PugModule[ecs.FargateTaskDefinition]):
             ),
         )
 
-        CONTAINER_NAME = f"{tenant.company}-{tenant.environment.value}-api-container"
+        CONTAINER_NAME = f"{tenant.company}-{tenant.product}-{tenant.environment.value}-api-container"
 
         secrets = parse_secrets_for_ecs(params.service_secret, params.service_secret_names)  # type: ignore
 

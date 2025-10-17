@@ -125,7 +125,7 @@ class DockerLambdaPug(PugModule[lambda_.IFunction]):
         params: DockerLambdaParams,
     ) -> None:
         TENANT_environment_LAMBDA_NAME = (
-            f"{tenant.company}-{tenant.environment.value}-{params.lambda_name}"
+            f"{tenant.company}-{tenant.product}-{tenant.environment.value}-{params.lambda_name}"
         )
 
         function = lambda_.Function(

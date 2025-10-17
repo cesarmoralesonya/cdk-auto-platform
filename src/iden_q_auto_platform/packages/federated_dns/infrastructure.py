@@ -22,7 +22,7 @@ class FederatedDns(Construct):
         super().__init__(scope, "federated-dns", **kwargs)
 
         FEDERATED_ZONE_ID = (
-            f"main-{tenant.company}-{tenant.environment.value}-hosted-zone"
+            f"main-{tenant.company}-{tenant.product}-{tenant.environment.value}-hosted-zone"
         )
 
         self.main_zone = route53.PublicHostedZone.from_lookup(
@@ -30,14 +30,14 @@ class FederatedDns(Construct):
         )
 
         PRIVATE_ZONE_ID = (
-            f"main-{tenant.company}-{tenant.environment.value}-private-zone"
+            f"main-{tenant.company}-{tenant.product}-{tenant.environment.value}-private-zone"
         )
 
         self.private_zone = route53.PrivateHostedZone(
             self, PRIVATE_ZONE_ID, vpc=tenant_vpc, zone_name=tenant.private_dns
         )
 
-        CERTIFICATE_ID = f"main-{tenant.company}-{tenant.environment.value}-certificate"
+        CERTIFICATE_ID = f"main-{tenant.company}-{tenant.product}-{tenant.environment.value}-certificate"
 
         self.certificate = acm.Certificate.from_certificate_arn(
             self, CERTIFICATE_ID, tenant.certificate_arn

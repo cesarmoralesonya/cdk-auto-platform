@@ -68,7 +68,7 @@ class EcsFargateServicePug(
         self, scope: Construct, tenant: TenantBase, params: EcsFargateServiceParams
     ):
         ECS_SERVICE_NAME = (
-            f"{tenant.company}-"
+            f"{tenant.company}-{tenant.product}-"
             f"{tenant.environment.value}-{params.service_type.value}-container-service"
         )
 

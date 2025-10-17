@@ -55,7 +55,7 @@ class EcsScheduledFargateTaskPug(PugModule[ecs_patterns.ScheduledFargateTask]):
         params: EcsScheduledFargateTaskParams,
     ):
         ECS_SCHEDULED_TASK_NAME = (
-            f"{tenant.company}-"
+            f"{tenant.company}-{tenant.product}-"
             f"{tenant.environment.value}-"
             f"{params.service_type.value}-scheduled-task"
         )
