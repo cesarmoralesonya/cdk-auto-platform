@@ -73,7 +73,7 @@ class Databases(Construct):
             vpc_subnets=ec2.SubnetSelection(
                 subnet_type=(
                     ec2.SubnetType.PRIVATE_ISOLATED
-                    if tenant.environment is AppEnvironment.LIVE
+                    if tenant.environment is AppEnvironment.PROD
                     else ec2.SubnetType.PUBLIC
                 )
             ),
@@ -88,7 +88,7 @@ class Databases(Construct):
             queue_name=TENANT_environment_QUEUE_NAME,
         )
 
-        if tenant.environment is AppEnvironment.LIVE:
+        if tenant.environment is AppEnvironment.PROD:
             TENANT_environment_BASTION_SECURITY_GROUP_NAME = (
                 f"{db_name}-" f"bastion-security-group"
             )
@@ -132,7 +132,7 @@ class Databases(Construct):
             allow_all_outbound=True,
         )
 
-        if tenant.environment is AppEnvironment.LIVE:
+        if tenant.environment is AppEnvironment.PROD:
             self.db_security_groups[database_instance].add_ingress_rule(
                 peer=self.tenant_bastion_security_group,
                 connection=ec2.Port.tcp(
@@ -188,7 +188,7 @@ class Databases(Construct):
             ],
             manage_master_user_password=True,
             publicly_accessible=(
-                False if tenant.environment is AppEnvironment.LIVE else True
+                False if tenant.environment is AppEnvironment.PROD else True
             ),
             multi_az=False,
             engine=tenant.rds_blueprints[
@@ -227,7 +227,7 @@ class Databases(Construct):
             )
         )
 
-        if tenant.environment is not AppEnvironment.LIVE:
+        if tenant.environment is not AppEnvironment.PROD:
             route53.CnameRecord(
                 self,
                 f"{db_name}-db-cname",

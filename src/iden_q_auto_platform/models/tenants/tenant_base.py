@@ -1,44 +1,17 @@
 from enum import Enum
 from typing import Optional
+from iden_q_auto_platform.build.vpc_cidr_builder import VpcCidrBuilder
 from iden_q_auto_platform.models.environments.app_environment import AppEnvironment
-from iden_q_auto_platform.models.blueprints.ecs_fargate_blueprint import (
-    EcsFargateBlueprint,
-)
+from iden_q_auto_platform.models.blueprints\
+    .ecs_fargate_blueprint import EcsFargateBlueprint
+
 from iden_q_auto_platform.models.blueprints.database_blueprint import DatabaseBlueprint
 
 
-class IpPrivateRanges(Enum):
-    """
-    Range of private IP addresses defined by RFC 1918
-        • 10.0.0.0/16 - 65536 IP addresses
-        • 172.16.0.0/20 - 4096 IP addresses
-        • 192.168.0.0/24 - 256 IP addresses
-    """
-
-    LARGE_COMPANY = "10"
-    BIG_COMPANY = "172.16"
-    SMALL_COMPANY = "192.168"
-
-
-class InfrastructureTypes(Enum):
-    SERVERLESS = "serverless"
-    ECS_FARGATE_RDS = "ecs_fargate_rds"
-    ECS_EC2_RDS = "ecs_ec2_rds"
-    RDS_ONLY = "rds_only"
-
-
-class PrefixListCidr:
-    def __init__(
-        self,
-        cidr: str,
-        description: str,
-    ):
-        self.CIDR = cidr
-        self.DESCRIPTION = description
-
-    def validate_cidr(self):
-        if "/16" in self.CIDR:
-            raise ValueError("CIDR must not be /16")
+from iden_q_auto_platform.models.tenants\
+    .infrastructure_types import InfrastructureTypes
+from iden_q_auto_platform.models.vpc.ip_ranges_types import IpPrivateRanges
+from iden_q_auto_platform.models.vpc.prefix_list_cidr import PrefixListCidr
 
 
 class TenantBase:
@@ -64,7 +37,30 @@ class TenantBase:
         self.certificate_arn = certificate_arn
         self._infrastructure_type = infrastructure_type
         self.ip_private_ranges = ip_private_ranges
+        self.validate_ip_private_ranges()
         self.prefix_list_cidrs = prefix_list_cidrs
+        self.validate_prefix_list_cidrs()
+        if self._infrastructure_type != InfrastructureTypes.SERVERLESS:
+            self.vpc_cidr = VpcCidrBuilder.build(self.ip_private_ranges)  # type: ignore
+
+    def validate_ip_private_ranges(self):
+        if self._infrastructure_type != InfrastructureTypes.SERVERLESS:
+            if self.ip_private_ranges is None:
+                raise ValueError(
+                    "ip_private_ranges must be defined for "
+                    f"{self._infrastructure_type.value} infrastructure type"
+                )
+
+    def validate_prefix_list_cidrs(self):
+        if self._infrastructure_type != InfrastructureTypes.SERVERLESS:
+            if self.prefix_list_cidrs is not None:
+                for prefix_list_cidr in self.prefix_list_cidrs:
+                    prefix_list_cidr.validate_cidr()
+            else:
+                raise ValueError(
+                    "prefix_list_cidrs must be defined for "
+                    f"{self._infrastructure_type.value} infrastructure type"
+                )
 
     def _builder_blueprints(
         self,
@@ -97,37 +93,16 @@ class TenantBase:
         return self._rds_blueprints
 
     def dev(self):
-        if self.ip_private_ranges == IpPrivateRanges.LARGE_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".2.0.0/16"
-        elif self.ip_private_ranges == IpPrivateRanges.BIG_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".32.0/20"
-        elif self.ip_private_ranges == IpPrivateRanges.SMALL_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".32.0/24"
-
         self.environment = AppEnvironment.DEV
 
         return self
 
     def uat(self):
-        if self.ip_private_ranges == IpPrivateRanges.LARGE_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".1.0.0/16"
-        elif self.ip_private_ranges == IpPrivateRanges.BIG_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".16.0/20"
-        elif self.ip_private_ranges == IpPrivateRanges.SMALL_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".16.0/24"
-
         self.environment = AppEnvironment.UAT
 
         return self
 
     def prod(self):
-        if self.ip_private_ranges == IpPrivateRanges.LARGE_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".0.0.0/16"
-        elif self.ip_private_ranges == IpPrivateRanges.BIG_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".0.0/20"
-        elif self.ip_private_ranges == IpPrivateRanges.SMALL_COMPANY:
-            self.vpc_cidr = self.ip_private_ranges.value + ".0.0/24"
-
-        self.environment = AppEnvironment.LIVE
+        self.environment = AppEnvironment.PROD
 
         return self

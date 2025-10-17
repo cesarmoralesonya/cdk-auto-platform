@@ -89,7 +89,7 @@ class EcsFargateServicePug(
             ),
             domain_name=(
                 params.service_type.value
-                if tenant.environment == AppEnvironment.LIVE
+                if tenant.environment == AppEnvironment.PROD
                 else f"{params.service_type.value}-{tenant.environment.value}"
             ),
             protocol=(

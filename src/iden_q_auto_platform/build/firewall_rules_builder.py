@@ -62,7 +62,7 @@ class FirewallRulesBuilder:
                                         f"Allow {scheduled_task.name} container to connect "
                                         "to database")
                                 )
-                if tenant.environment == AppEnvironment.LIVE:
+                if tenant.environment == AppEnvironment.PROD:
                     security_group.add_ingress_rule(
                         peer=power_bi_bastion_security_group,
                         connection=port,
