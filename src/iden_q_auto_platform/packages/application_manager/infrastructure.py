@@ -10,8 +10,8 @@ class ApplicationManager(Construct):
         app = appreg.CfnApplication(
             self,
             "app",
-            name=f"{tenant.COMPANY}-{tenant.environment.value}",
-            description=f"{tenant.COMPANY} {tenant.environment.value}",
+            name=f"{tenant.company}-{tenant.environment.value}",
+            description=f"{tenant.company} {tenant.environment.value}",
         )
 
         appreg.CfnResourceAssociation(

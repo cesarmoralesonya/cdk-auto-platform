@@ -23,7 +23,7 @@ class ServiceLoadBalancerLoggingBuilder(Construct):
         tenant: TenantBase
     ):
         ALB_LOGS_BUCKET_NAME = (
-            f"{tenant.COMPANY}-{tenant.environment.value}-alb-logs-bucket"
+            f"{tenant.company}-{tenant.environment.value}-alb-logs-bucket"
         )
 
         self.alb_logs_bucket = Bucket(
@@ -40,7 +40,7 @@ class ServiceLoadBalancerLoggingBuilder(Construct):
         )
 
         ALB_LOGS_DATABASE_NAME = (
-            f"{tenant.COMPANY}-{tenant.environment.value}-alb-logs-db"
+            f"{tenant.company}-{tenant.environment.value}-alb-logs-db"
         )
 
         self.alb_logs_db = glue.CfnDatabase(
@@ -53,7 +53,7 @@ class ServiceLoadBalancerLoggingBuilder(Construct):
         )
 
         ALB_LOGS_WORKGROUP_NAME = (
-            f"{tenant.COMPANY}-{tenant.environment.value}-alb-logs-workgroup"
+            f"{tenant.company}-{tenant.environment.value}-alb-logs-workgroup"
         )
 
         self.athena_workgroup = athena.CfnWorkGroup(

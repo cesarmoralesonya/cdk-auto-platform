@@ -15,7 +15,7 @@ class EcsCluster(Construct):
     ):
         super().__init__(scope, "ecs-cluster", **kwargs)
 
-        ECS_CLUSTER_NAME = f"{tenant.COMPANY}-{tenant.environment.value}-ecs-cluster"
+        ECS_CLUSTER_NAME = f"{tenant.company}-{tenant.environment.value}-ecs-cluster"
         self.tenant_ecs_cluster = ecs.Cluster(
             self,
             ECS_CLUSTER_NAME,

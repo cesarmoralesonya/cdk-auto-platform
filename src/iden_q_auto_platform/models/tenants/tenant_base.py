@@ -50,21 +50,21 @@ class TenantBase:
         aws_region: str,
         principal_dns: str,
         certificate_arn: str,
-        ip_private_ranges: IpPrivateRanges,
         infrastructure_type: InfrastructureTypes,
-        prefix_list_cidrs: list[PrefixListCidr],
+        ip_private_ranges: Optional[IpPrivateRanges] = None,
+        prefix_list_cidrs: Optional[list[PrefixListCidr]] = None,
     ):
-        self._PRINCIPAL_DNS = principal_dns
-        self.COMPANY = company
-        self.PRODUCT = product
+        self._principal_dns = principal_dns
+        self.company = company
+        self.product = product
         self.AWS_ACCOUNT = aws_account
         self.AWS_REGION = aws_region
-        self.FEDERATED_DNS = f"{self.PRODUCT.value}.{self._PRINCIPAL_DNS}"
-        self.PRIVATE_DNS = f"internal.{self.FEDERATED_DNS}"
-        self.CERTIFICATE_ARN = certificate_arn
-        self.IP_PRIVATE_RANGES = ip_private_ranges
+        self.federated_dns = f"{self.product.value}.{self._principal_dns}"
+        self.private_dns = f"internal.{self.federated_dns}"
+        self.certificate_arn = certificate_arn
         self._infrastructure_type = infrastructure_type
-        self.PREFIX_LIST_CIDRS = prefix_list_cidrs
+        self.ip_private_ranges = ip_private_ranges
+        self.prefix_list_cidrs = prefix_list_cidrs
 
     def _builder_blueprints(
         self,
@@ -97,36 +97,36 @@ class TenantBase:
         return self._rds_blueprints
 
     def dev(self):
-        if self.IP_PRIVATE_RANGES == IpPrivateRanges.LARGE_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".2.0.0/16"
-        elif self.IP_PRIVATE_RANGES == IpPrivateRanges.BIG_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".32.0/20"
-        elif self.IP_PRIVATE_RANGES == IpPrivateRanges.SMALL_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".32.0/24"
+        if self.ip_private_ranges == IpPrivateRanges.LARGE_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".2.0.0/16"
+        elif self.ip_private_ranges == IpPrivateRanges.BIG_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".32.0/20"
+        elif self.ip_private_ranges == IpPrivateRanges.SMALL_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".32.0/24"
 
         self.environment = AppEnvironment.DEV
 
         return self
 
     def uat(self):
-        if self.IP_PRIVATE_RANGES == IpPrivateRanges.LARGE_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".1.0.0/16"
-        elif self.IP_PRIVATE_RANGES == IpPrivateRanges.BIG_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".16.0/20"
-        elif self.IP_PRIVATE_RANGES == IpPrivateRanges.SMALL_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".16.0/24"
+        if self.ip_private_ranges == IpPrivateRanges.LARGE_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".1.0.0/16"
+        elif self.ip_private_ranges == IpPrivateRanges.BIG_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".16.0/20"
+        elif self.ip_private_ranges == IpPrivateRanges.SMALL_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".16.0/24"
 
         self.environment = AppEnvironment.UAT
 
         return self
 
     def prod(self):
-        if self.IP_PRIVATE_RANGES == IpPrivateRanges.LARGE_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".0.0.0/16"
-        elif self.IP_PRIVATE_RANGES == IpPrivateRanges.BIG_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".0.0/20"
-        elif self.IP_PRIVATE_RANGES == IpPrivateRanges.SMALL_COMPANY:
-            self.vpc_cidr = self.IP_PRIVATE_RANGES.value + ".0.0/24"
+        if self.ip_private_ranges == IpPrivateRanges.LARGE_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".0.0.0/16"
+        elif self.ip_private_ranges == IpPrivateRanges.BIG_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".0.0/20"
+        elif self.ip_private_ranges == IpPrivateRanges.SMALL_COMPANY:
+            self.vpc_cidr = self.ip_private_ranges.value + ".0.0/24"
 
         self.environment = AppEnvironment.LIVE
 

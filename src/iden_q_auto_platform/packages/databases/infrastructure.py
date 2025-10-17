@@ -30,7 +30,7 @@ class Databases(Construct):
     ):
         CONSTRUCT_ID = "database" if is_unique else "database-instances"
         super().__init__(scope, CONSTRUCT_ID, **kwargs)
-        environment_name = f"{tenant.COMPANY}-{tenant.environment.value}"
+        environment_name = f"{tenant.company}-{tenant.environment.value}"
         self._init_shared_resources(environment_name, tenant, tenant_vpc)
 
         for database_instance in database_instances:
@@ -201,7 +201,7 @@ class Databases(Construct):
             enable_cloudwatch_logs_exports=["error"],
             storage_type="gp3",
             enable_performance_insights=True,
-            master_username="".join(e for e in tenant.COMPANY if e.isalnum()),
+            master_username="".join(e for e in tenant.company if e.isalnum()),
             db_instance_class=tenant.rds_blueprints[
                 database_instance
             ].performance.instance_type,

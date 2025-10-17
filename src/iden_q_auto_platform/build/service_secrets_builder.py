@@ -24,7 +24,7 @@ class ServiceSecretsBuilder(Construct):
         is_db_secret_required: bool = False
     ):
         SERVICE_SECRET_NAME = (
-            f"{tenant.COMPANY}-{tenant.environment.value}-"
+            f"{tenant.company}-{tenant.environment.value}-"
             f"{service_type.value}-service-secret"
         )
 
@@ -33,7 +33,7 @@ class ServiceSecretsBuilder(Construct):
             SERVICE_SECRET_NAME,
             secret_name=SERVICE_SECRET_NAME,
             description=(
-                f"Secret for {tenant.COMPANY} {tenant.environment.value} "
+                f"Secret for {tenant.company} {tenant.environment.value} "
                 f"{service_type.value} service secret"
             ),
             secret_object_value=parse_secrets_from_env(
@@ -46,7 +46,7 @@ class ServiceSecretsBuilder(Construct):
         self.service_db_secret = None
         if is_db_secret_required:
             SERVICE_DB_CREDENTIALS_SECRET_NAME = (
-                f"{tenant.COMPANY}-{tenant.environment.value}-"
+                f"{tenant.company}-{tenant.environment.value}-"
                 f"{service_type.value}-db-credentials"
             )
             self.service_db_secret = secretsmanager.Secret(
@@ -54,7 +54,7 @@ class ServiceSecretsBuilder(Construct):
                 SERVICE_DB_CREDENTIALS_SECRET_NAME,
                 secret_name=SERVICE_DB_CREDENTIALS_SECRET_NAME,
                 description=(
-                    f"Secret for {tenant.COMPANY} {tenant.environment.value} "
+                    f"Secret for {tenant.company} {tenant.environment.value} "
                     f"{service_type.value} database credentials"
                 )
             )

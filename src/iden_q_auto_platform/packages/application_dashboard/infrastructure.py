@@ -28,7 +28,7 @@ class ApplicationDashboard(Construct):
         super().__init__(scope, "app-dashboard", **kwargs)
 
         APPLICATION_DASHBOARD_NAME = (
-            f"{tenant.COMPANY}-{tenant.environment.value}-dashboard"
+            f"{tenant.company}-{tenant.environment.value}-dashboard"
         )
 
         self.widgets: list[list[cloudwatch.IWidget]] = []
@@ -78,11 +78,11 @@ class ApplicationDashboard(Construct):
 
         db_log_error_names = (
             [
-                f"/aws/rds/instance/{tenant.COMPANY}-{tenant.environment.value}-db-server/error"
+                f"/aws/rds/instance/{tenant.company}-{tenant.environment.value}-db-server/error"
             ]
             if database_instance_is_unique
             else [
-                f"/aws/rds/instance/{tenant.COMPANY}-{tenant.environment.value}-{db_instance.value}-db-server/error"
+                f"/aws/rds/instance/{tenant.company}-{tenant.environment.value}-{db_instance.value}-db-server/error"
                 for db_instance in database_instances
             ]
         )
@@ -140,5 +140,5 @@ class ApplicationDashboard(Construct):
             "dashboard-output",
             value=cloudwatch_dashboard_url,
             description="CloudWatch Dashboard URL",
-            export_name=(f"DashboardURL-{tenant.COMPANY}-{tenant.environment.value}"),
+            export_name=(f"DashboardURL-{tenant.company}-{tenant.environment.value}"),
         )

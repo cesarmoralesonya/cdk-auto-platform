@@ -9,8 +9,8 @@ class TagRulesBuilder:
             stack: Stack,
             tenant: TenantBase):
         required_tags = {
-            'company': tenant.COMPANY,
-            'product': tenant.PRODUCT.value,
+            'company': tenant.company,
+            'product': tenant.product.value,
             'environment': tenant.environment.value
         }
 

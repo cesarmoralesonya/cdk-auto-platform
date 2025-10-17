@@ -53,7 +53,7 @@ class FactoryDatabases(Construct):
         self.lambda_functions: dict[str, lambda_.IFunction] = {}
         tenant_lambda_security_groups: dict[str, ec2.SecurityGroup] = {}
         for database_instance in database_instances:
-            environment_name = f"{tenant.COMPANY}-{tenant.environment.value}"
+            environment_name = f"{tenant.company}-{tenant.environment.value}"
 
             if is_unique:
                 CONSTRUCT_ID = "database-factory"
@@ -96,8 +96,8 @@ class FactoryDatabases(Construct):
 
                 lambda_environment = {
                     "QUEUE_URL": stack_databases.event_queue.queue_url,
-                    "TENANT": tenant.COMPANY,
-                    "PRODUCT": tenant.PRODUCT.value,
+                    "TENANT": tenant.company,
+                    "PRODUCT": tenant.product.value,
                     "PERSISTENT_DATABASE": persistent_database.value,
                     "environment": tenant.environment.value,
                     "DB_HOST": stack_databases.db_instances[

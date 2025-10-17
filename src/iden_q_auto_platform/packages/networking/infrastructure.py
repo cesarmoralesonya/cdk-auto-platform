@@ -12,13 +12,13 @@ class Networking(Construct):
     ):
         super().__init__(scope, "networking", **kwargs)
 
-        PREFIX_LIST_NAME = f"{tenant.COMPANY}-{tenant.environment.value}-prefix-list"
+        PREFIX_LIST_NAME = f"{tenant.company}-{tenant.environment.value}-prefix-list"
         entries = [
             ec2.CfnPrefixList.EntryProperty(
                 cidr=prefix_list_cidr.CIDR,
                 description=prefix_list_cidr.DESCRIPTION,
             )
-            for prefix_list_cidr in tenant.PREFIX_LIST_CIDRS
+            for prefix_list_cidr in tenant.prefix_list_cidrs
         ]
         self.prefix_list = ec2.PrefixList(
             self,
@@ -28,7 +28,7 @@ class Networking(Construct):
             entries=entries,
         )
 
-        TENANT_VPC_NAME = f"{tenant.COMPANY}-{tenant.environment.value}-vpc"
+        TENANT_VPC_NAME = f"{tenant.company}-{tenant.environment.value}-vpc"
         self.tenant_vpc = ec2.Vpc(
             self,
             TENANT_VPC_NAME,
