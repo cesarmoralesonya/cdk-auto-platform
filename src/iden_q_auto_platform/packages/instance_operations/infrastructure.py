@@ -64,7 +64,7 @@ class InstanceOperations(Construct):
     ):
         super().__init__(scope, "instance-operations", **kwargs)
 
-        environment_name = f"{tenant.company}-{tenant.product}-{tenant.environment.value}"
+        environment_name = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}"
         INSTANCE_OPERATIONS_SECURITY_GROUP_NAME = (
             f"{environment_name}-instance-operations-security-group"
         )
@@ -92,7 +92,7 @@ class InstanceOperations(Construct):
             "Allow SSH from Prefix List",
         )
 
-        KEY_NAME = f"{tenant.company}-{tenant.product}-{operating_system.value.lower()}-key-pair"
+        KEY_NAME = f"{tenant.company}-{tenant.product.value}-{operating_system.value.lower()}-key-pair"
 
         self.linux_key = ec2.KeyPair.from_key_pair_name(
             self, KEY_NAME, key_pair_name=KEY_NAME

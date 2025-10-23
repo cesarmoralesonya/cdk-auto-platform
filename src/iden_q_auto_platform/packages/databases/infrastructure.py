@@ -30,7 +30,7 @@ class Databases(Construct):
     ):
         CONSTRUCT_ID = "database" if is_unique else "database-instances"
         super().__init__(scope, CONSTRUCT_ID, **kwargs)
-        environment_name = f"{tenant.company}-{tenant.product}-{tenant.environment.value}"
+        environment_name = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}"
         self._init_shared_resources(environment_name, tenant, tenant_vpc)
 
         for database_instance in database_instances:

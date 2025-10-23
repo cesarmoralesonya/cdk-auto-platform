@@ -46,7 +46,7 @@ class ApplicationMonitoring(Construct):
         ),
     ):
         ALARM_NAME = (
-            f"{tenant.company}-{tenant.product}-{trackable_service.threshold.name.lower()}-"
+            f"{tenant.company}-{tenant.product.value}-{trackable_service.threshold.name.lower()}-"
             f"{tenant.environment.value}-"
             f"{trackable_service.service_type.value}-"
             f"{trackable_service.metric.metric_name}-alarm"
@@ -76,13 +76,13 @@ class ApplicationMonitoring(Construct):
         self.trackable_wit_alarm_services.append(trackable_service)
 
     def create_sns_topic(self, tenant: TenantBase):
-        topic_name = f"{tenant.company}-{tenant.product}-{tenant.environment.value}-topic"
+        topic_name = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-topic"
         return sns.Topic(self, topic_name, display_name=topic_name)
 
     def create_notification_lambda(self, tenant: TenantBase):
 
         MS_TEAMS_SECRET_NAME = (
-            f"{tenant.company}-{tenant.product}-{tenant.environment.value}-"
+            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-"
             f"{CrossPlatform.MS_TEAMS.value}-secret"
         )
 
@@ -98,7 +98,7 @@ class ApplicationMonitoring(Construct):
 
         ms_teams_notifier_lambda = lambda_.Function(
             self,
-            f"{tenant.company}-{tenant.product}-{tenant.environment.value}-{CrossPlatform.MS_TEAMS.value}-notifier",
+            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{CrossPlatform.MS_TEAMS.value}-notifier",
             runtime=lambda_.Runtime.PYTHON_3_8,
             handler="index.handler",
             code=lambda_.Code.from_asset(

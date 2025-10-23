@@ -20,7 +20,7 @@ from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
 class EcrRegistryPug(PugModule[ecr.Repository]):
     def __init__(self, scope: Construct, tenant: TenantBase, service_type: Enum):
         ECR_REGISTRY_NAME = (
-            f"{tenant.company}-{tenant.product}-{tenant.environment.value}-"
+            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-"
             f"{service_type.value}-ecr-registry"
         )
 
