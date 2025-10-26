@@ -14,9 +14,10 @@ from aws_cdk import (
 # region: iden-q-auto-platform
 from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
 from iden_q_auto_platform.models.database.database_matrix import _MatrixType
-from iden_q_auto_platform.modules.docker_lambda.infrastructure import (
-    DockerLambdaParams,
-    DockerLambdaPug,
+from iden_q_auto_platform.modules.custom_lambda.infrastructure import (
+    LambdaPlatform,
+    LambdaParams,
+    LambdaPug,
 )
 from iden_q_auto_platform.modules.events.lambda_source.infrastructure import (
     LambdaSourceParams,
@@ -123,8 +124,9 @@ class FactoryDatabases(Construct):
                         service_user_secret.model_dump_json()
                     )
 
-                lambda_params = DockerLambdaParams(
+                lambda_params = LambdaParams(
                     relative_path="src/services/apps/ms-sql-database-factory",
+                    lambda_platform=LambdaPlatform.DOCKER,
                     lambda_name=lambda_name,
                     tenant_vpc=tenant_vpc,
                     lambda_environment=lambda_environment,
@@ -134,7 +136,7 @@ class FactoryDatabases(Construct):
                     security_groups=[tenant_lambda_security_groups[persistent_db_name]],
                 )
 
-                lambda_pug = DockerLambdaPug(self, tenant, lambda_params)
+                lambda_pug = LambdaPug(self, tenant, lambda_params)
 
                 self.lambda_functions[persistent_db_name] = lambda_pug.play()
 

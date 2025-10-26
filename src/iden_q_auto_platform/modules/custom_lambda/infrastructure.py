@@ -1,4 +1,5 @@
 # region: primitives
+from enum import Enum
 from typing import Optional, Sequence
 from constructs import Construct
 from pydantic import BaseModel, Field
@@ -30,7 +31,12 @@ DEFAULT_TIMEOUT_SECONDS = 3
 # endregion
 
 
-class DockerLambdaConfig(BaseModel):
+class LambdaPlatform(Enum):
+    DOCKER = "docker"
+    CODE = "code"
+
+
+class LambdaConfig(BaseModel):
     memory_size_mb: int = Field(
         default=DEFAULT_MEMORY_SIZE_MB,
         ge=128,
@@ -51,10 +57,11 @@ class DockerLambdaConfig(BaseModel):
     )
 
 
-class DockerLambdaParams:
+class LambdaParams:
     lambda_name: str
-    lambda_config: DockerLambdaConfig = DockerLambdaConfig()
-    lambda_environment: dict = {}
+    lambda_platform: LambdaPlatform
+    lambda_config: LambdaConfig = LambdaConfig()
+    lambda_environment: Optional[dict[str, str]] = {}
     relative_path: Optional[str] = None
     ecr_registry: Optional[str] = None
     exclude: Optional[Sequence[str]] = None
@@ -65,8 +72,9 @@ class DockerLambdaParams:
     def __init__(
         self,
         lambda_name: str,
-        lambda_config: Optional[DockerLambdaConfig] = None,
-        lambda_environment: Optional[dict] = None,
+        lambda_platform: LambdaPlatform,
+        lambda_config: Optional[LambdaConfig] = None,
+        lambda_environment: Optional[dict[str, str]] = None,
         relative_path: Optional[str] = None,
         ecr_registry: Optional[str] = None,
         exclude: Optional[Sequence[str]] = None,
@@ -75,7 +83,8 @@ class DockerLambdaParams:
         security_groups: Optional[list[ec2.SecurityGroup]] = None,
     ) -> None:
         self.lambda_name = lambda_name
-        self.lambda_config = lambda_config or DockerLambdaConfig()
+        self.lambda_platform = lambda_platform
+        self.lambda_config = lambda_config or LambdaConfig()
         self.lambda_environment = lambda_environment or {}
 
         self.relative_path = relative_path
@@ -98,11 +107,18 @@ class DockerLambdaParams:
             )
 
     def code(self, construct: Construct) -> lambda_.Code:
-        if self.relative_path:
+        if self.relative_path and self.lambda_platform == LambdaPlatform.DOCKER:
             return lambda_.Code.from_asset_image(
+                '.',
+                exclude=self.exclude,
+                asset_name=f"{self.lambda_name}-image",
+                platform=ecr_assets.Platform.LINUX_AMD64,
+                file=f"./{self.relative_path}/Dockerfile",
+            )
+        elif self.relative_path and self.lambda_platform == LambdaPlatform.CODE:
+            return lambda_.Code.from_asset(
                 self.relative_path,
                 exclude=self.exclude,
-                platform=ecr_assets.Platform.LINUX_AMD64,
             )
         if self.ecr_registry:
             return lambda_.Code.from_ecr_image(
@@ -117,23 +133,31 @@ class DockerLambdaParams:
         raise ValueError("Either 'relative_path' or 'ecr_registry' must be provided")
 
 
-class DockerLambdaPug(PugModule[lambda_.IFunction]):
+class LambdaPug(PugModule[lambda_.IFunction]):
     def __init__(
         self,
         scope: Construct,
         tenant: TenantBase,
-        params: DockerLambdaParams,
+        params: LambdaParams,
     ) -> None:
-        TENANT_environment_LAMBDA_NAME = (
+        TENANT_ENVIRONMENT_LAMBDA_NAME = (
             f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{params.lambda_name}"
         )
 
         function = lambda_.Function(
             scope,
-            f"{TENANT_environment_LAMBDA_NAME}-function",
-            function_name=TENANT_environment_LAMBDA_NAME,
-            runtime=lambda_.Runtime.FROM_IMAGE,
-            handler=lambda_.Handler.FROM_IMAGE,
+            f"{TENANT_ENVIRONMENT_LAMBDA_NAME}-function",
+            function_name=TENANT_ENVIRONMENT_LAMBDA_NAME,
+            runtime=(
+                lambda_.Runtime.FROM_IMAGE
+                if params.lambda_platform == LambdaPlatform.DOCKER
+                else lambda_.Runtime.PYTHON_3_12
+            ),
+            handler=(
+                lambda_.Handler.FROM_IMAGE
+                if params.lambda_platform == LambdaPlatform.DOCKER
+                else "handler.lambda_handler"
+            ),
             code=params.code(scope),
             environment=params.lambda_environment,
             memory_size=params.lambda_config.memory_size_mb,
