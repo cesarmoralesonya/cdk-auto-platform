@@ -68,6 +68,8 @@ class LambdaParams:
     tenant_vpc: Optional[ec2.IVpc] = None
     vpc_subnets: Optional[ec2.SubnetSelection] = None
     security_groups: Optional[list[ec2.SecurityGroup]] = None
+    architecture: lambda_.Architecture = lambda_.Architecture.ARM_64
+    tracing: lambda_.Tracing = lambda_.Tracing.ACTIVE
 
     def __init__(
         self,
@@ -81,6 +83,8 @@ class LambdaParams:
         tenant_vpc: Optional[ec2.IVpc] = None,
         vpc_subnets: Optional[ec2.SubnetSelection] = None,
         security_groups: Optional[list[ec2.SecurityGroup]] = None,
+        architecture: lambda_.Architecture = lambda_.Architecture.ARM_64,
+        tracing: lambda_.Tracing = lambda_.Tracing.ACTIVE,
     ) -> None:
         self.lambda_name = lambda_name
         self.lambda_platform = lambda_platform
@@ -95,6 +99,8 @@ class LambdaParams:
         self.tenant_vpc = tenant_vpc
         self.vpc_subnets = vpc_subnets
         self.security_groups = security_groups
+        self.architecture = architecture
+        self.tracing = tracing
 
     def _validate_source_container(self):
         if self.relative_path is None and self.ecr_registry is None:
@@ -108,11 +114,16 @@ class LambdaParams:
 
     def code(self, construct: Construct) -> lambda_.Code:
         if self.relative_path and self.lambda_platform == LambdaPlatform.DOCKER:
+            platform = (
+                ecr_assets.Platform.LINUX_ARM64
+                if self.architecture == lambda_.Architecture.ARM_64
+                else ecr_assets.Platform.LINUX_AMD64
+            )
             return lambda_.Code.from_asset_image(
                 '.',
                 exclude=self.exclude,
                 asset_name=f"{self.lambda_name}-image",
-                platform=ecr_assets.Platform.LINUX_AMD64,
+                platform=platform,
                 file=f"./{self.relative_path}/Dockerfile",
             )
         elif self.relative_path and self.lambda_platform == LambdaPlatform.CODE:
@@ -168,6 +179,8 @@ class LambdaPug(PugModule[lambda_.IFunction]):
             vpc=params.tenant_vpc,
             security_groups=params.security_groups,
             vpc_subnets=params.vpc_subnets,
+            architecture=params.architecture,
+            tracing=params.tracing,
         )
 
         assert isinstance(function, RuntimeIFunction)

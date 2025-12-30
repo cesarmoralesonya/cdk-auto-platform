@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel", "generate_changelog", "bump2version"]
+requires = ["setuptools", "wheel", "generate_changelog", "bump-my-version"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
@@ -29,11 +29,10 @@ Source = "https://github.com/iden-q/iden-q-auto-platform/src/"
 
 [project.scripts]
 generate-changelog = "generate_changelog.cli:cli"
-bump2version = "bump2version.cli:main"
 
 [dependency-groups]
 dev = [
-    "bumpversion",
+    "bump-my-version",
     "generate-changelog",
     "git-fame>=1.12.2",
 ]
