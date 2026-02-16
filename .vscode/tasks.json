@@ -250,35 +250,6 @@
                 "command": ".venv\\Scripts\\Activate ; $env:PYTHONPATH = \"$env:PYTHONPATH;src;server\\aws\\cdk\" ; cdk destroy ${input:stackId} --force --profile AWSAdministratorAccess-111856684272"
             },
             "problemMatcher": []
-        },
-        {
-            "label": "codeartifact delete",
-            "type": "shell",
-            "group": "none",
-            "osx": {
-                "command": "aws codeartifact delete-package-versions --domain $CODE_ARTIFACT_DOMAIN --domain-owner 111856684272 --repository $CODE_ARTIFACT_REPOSITORY --format pypi --package $CODE_ARTIFACT_REPOSITORY --versions 1.0.0 --region eu-west-3 --profile AWSAdministratorAccess-111856684272"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "codeartifact upload",
-            "type": "shell",
-            "group": "none",
-            "dependsOn": "format python code src/iden_q_auto_platform",
-            "dependsOrder": "sequence",
-            "osx": {
-                "command": "source .venv/bin/activate && aws codeartifact login --tool twine --domain $CODE_ARTIFACT_DOMAIN --domain-owner 111856684272 --repository $CODE_ARTIFACT_REPOSITORY --region eu-west-3 --profile AWSAdministratorAccess-111856684272 && cd src && rm -rf dist && generate-changelog && bump-my-version bump patch && python -m build && twine upload --repository codeartifact dist/*"
-            },
-            "problemMatcher": []
-        },
-        {
-            "label": "codeartifact login",
-            "type": "shell",
-            "group": "none",
-            "osx": {
-                "command": "aws codeartifact login --tool twine --domain $CODE_ARTIFACT_DOMAIN --domain-owner 111856684272 --repository $CODE_ARTIFACT_REPOSITORY --region eu-west-3 --profile AWSAdministratorAccess-111856684272"
-            },
-            "problemMatcher": []
         }
     ]
 }
