@@ -23,9 +23,9 @@ dependencies = [
 license = { text = "MIT" }
 
 [project.urls]
-Homepage = "https://github.com/iden-q/iden-q-auto-platform"
-Documentation = "https://github.com/iden-q/iden-q-auto-platform/wiki"
-Source = "https://github.com/iden-q/iden-q-auto-platform/src/"
+Homepage = "https://github.com/cesarmoralesonya/cdk-auto-platform"
+Documentation = "https://github.com/cesarmoralesonya/cdk-auto-platform/wiki"
+Source = "https://github.com/cesarmoralesonya/cdk-auto-platform/src/"
 
 [project.scripts]
 generate-changelog = "generate_changelog.cli:cli"
