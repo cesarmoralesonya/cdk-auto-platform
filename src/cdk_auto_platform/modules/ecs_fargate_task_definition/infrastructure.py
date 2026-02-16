@@ -61,7 +61,7 @@ class EcsFargateTaskDefinitionParams:
     service_secret: secretsmanager.Secret
     service_secret_names: type[Enum]
     log_group_params: LogGroupParams
-    service_environment: dict = {}
+    service_environment: dict[str, str] = {}
     service_db_secret: Optional[secretsmanager.Secret] = None
     ecr_registry: Optional[ecr.Repository] = None
     file_system_params: Optional[FileSystemParams] = None
@@ -103,7 +103,10 @@ class EcsFargateTaskDefinitionPug(PugModule[ecs.FargateTaskDefinition]):
         params: EcsFargateTaskDefinitionParams,
     ) -> None:
         TASK_DEFINITION_SUFFIX = f"{params.service_type.value}-task-definition"
-        TASK_DEFINITION_NAME = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{TASK_DEFINITION_SUFFIX}"
+        TASK_DEFINITION_NAME = (
+            f"{tenant.company}-{tenant.product.value}-"
+            f"{tenant.environment.value}-{TASK_DEFINITION_SUFFIX}"
+        )
 
         task_definition = ecs.FargateTaskDefinition(
             scope,

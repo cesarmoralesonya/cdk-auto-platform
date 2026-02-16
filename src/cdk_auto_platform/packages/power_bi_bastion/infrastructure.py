@@ -1,3 +1,5 @@
+from typing import Any
+
 from constructs import Construct
 
 from aws_cdk import (
@@ -28,12 +30,15 @@ class PowerBiBastion(Construct):
         tenant: TenantBase,
         tenant_vpc: ec2.Vpc,
         volume_size: int = 45,
-        **kwargs,
+        **kwargs: Any,
     ):
         super().__init__(scope, "powerbi-bastion", **kwargs)
 
         if tenant.environment == AppEnvironment.PROD:
-            environment_name = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{CrossPlatform.POWERBI.value}"
+            environment_name = (
+                f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-"
+                f"{CrossPlatform.POWERBI.value}"
+            )
             BASTION_SECURITY_GROUP_NAME = f"{environment_name}-bastion-security-group"
             BASTION_NAME = f"{environment_name}-bastion"
             operating_system: OperatingSystem = OperatingSystem.WINDOWS

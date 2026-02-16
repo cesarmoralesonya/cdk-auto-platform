@@ -7,7 +7,9 @@ from constructs import Construct
 
 
 class ApplicationManager(Construct):
-    def __init__(self, scope: Construct, tenant: TenantBase, stack_id: str, **kwargs: Any):
+    def __init__(
+        self, scope: Construct, tenant: TenantBase, stack_id: str, **kwargs: Any
+    ):
         super().__init__(scope, "application-manager", **kwargs)
         app = appreg.CfnApplication(
             self,
