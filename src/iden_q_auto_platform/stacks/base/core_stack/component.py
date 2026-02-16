@@ -10,7 +10,7 @@ from aws_cdk import Stack
 
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.environments.app_environment import AppEnvironment
+from cdk_auto_platform.models.environments.app_environment import AppEnvironment
 
 # endregion
 

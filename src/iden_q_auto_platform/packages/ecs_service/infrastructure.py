@@ -3,13 +3,13 @@ from typing import Optional, Sequence
 from constructs import Construct
 from enum import Enum
 
-from iden_q_auto_platform.build.service_load_balancer_logging_builder import (
+from cdk_auto_platform.build.service_load_balancer_logging_builder import (
     ServiceLoadBalancerLoggingBuilder,
 )
-from iden_q_auto_platform.build.service_secrets_builder import ServiceSecretsBuilder
+from cdk_auto_platform.build.service_secrets_builder import ServiceSecretsBuilder
 
 
-from iden_q_auto_platform.modules.ecs_fargate_service.infrastructure import (
+from cdk_auto_platform.modules.ecs_fargate_service.infrastructure import (
     EcsFargateServiceParams,
     EcsFargateServicePug,
 )
@@ -19,12 +19,12 @@ from aws_cdk import aws_ecs as ecs, aws_ec2 as ec2
 
 from aws_cdk.aws_secretsmanager import ISecret
 
-from iden_q_auto_platform.packages.federated_dns.infrastructure import FederatedDns
+from cdk_auto_platform.packages.federated_dns.infrastructure import FederatedDns
 
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 
-from iden_q_auto_platform.build.service_task_definition_builder import (
+from cdk_auto_platform.build.service_task_definition_builder import (
     ServiceTaskDefinitionBuilder,
     RegistryTypes,
     FileSystemParams,

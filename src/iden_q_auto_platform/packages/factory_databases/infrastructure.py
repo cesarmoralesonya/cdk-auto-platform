@@ -12,29 +12,29 @@ from aws_cdk import (
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.models.database.database_matrix import _MatrixType
-from iden_q_auto_platform.modules.custom_lambda.infrastructure import (
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.database.database_matrix import _MatrixType
+from cdk_auto_platform.modules.custom_lambda.infrastructure import (
     LambdaPlatform,
     LambdaParams,
     LambdaPug,
 )
-from iden_q_auto_platform.modules.events.lambda_source.infrastructure import (
+from cdk_auto_platform.modules.events.lambda_source.infrastructure import (
     LambdaSourceParams,
     LambdaSourcePug,
 )
-from iden_q_auto_platform.modules.private.permission_actions.secrets import (
+from cdk_auto_platform.modules.private.permission_actions.secrets import (
     GetSecretPermissionAction,
     UpdateSecretPermissionAction,
 )
-from iden_q_auto_platform.modules.private.permission_actions.ecs_services import (
+from cdk_auto_platform.modules.private.permission_actions.ecs_services import (
     UpdateServicePermissionAction,
 )
-from iden_q_auto_platform.modules.private.add_to_role_lambda.infrastructure import (
+from cdk_auto_platform.modules.private.add_to_role_lambda.infrastructure import (
     AddToRoleLambdaParams,
     AddToRoleLambdaPug,
 )
-from iden_q_auto_platform.packages.databases.infrastructure import Databases
+from cdk_auto_platform.packages.databases.infrastructure import Databases
 
 # endregion
 

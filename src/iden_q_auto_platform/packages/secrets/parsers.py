@@ -8,11 +8,11 @@ from aws_cdk import (
 
 from typing import Optional
 
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.utils.validators.environment_validator import (
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.utils.validators.environment_validator import (
     EnvironmentValidator,
 )
-from iden_q_auto_platform.utils.configs import PathConfig
+from cdk_auto_platform.utils.configs import PathConfig
 
 
 def parse_secrets_from_env(

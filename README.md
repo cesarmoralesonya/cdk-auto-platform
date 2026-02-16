@@ -7,7 +7,7 @@ IaC platform engineering library based on AWS CDK
 
 ## Overview
 
-`iden_q_auto_platform` is a comprehensive CDK extension that provides a platform for building AWS CDK applications with best practices and reusable components.
+`cdk_auto_platform` is a comprehensive CDK extension that provides a platform for building AWS CDK applications with best practices and reusable components.
 
 ## Installation
 
@@ -17,10 +17,10 @@ Download the wheel or source distribution from the [latest release](https://gith
 
 ```bash
 # Install from wheel
-pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46-py3-none-any.whl
+pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/cdk_auto_platform-1.0.46-py3-none-any.whl
 
 # Or install from source tarball
-pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46.tar.gz
+pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/cdk_auto_platform-1.0.46.tar.gz
 ```
 
 ### From Source
@@ -99,7 +99,7 @@ See [.github/README.md](.github/README.md) for detailed workflow documentation.
 ## Project Structure
 
 ```txt
-src/iden_q_auto_platform/
+src/cdk_auto_platform/
 ├── build/              # Build utilities for CDK constructs
 ├── models/             # Data models and configurations
 │   ├── alarms/         # CloudWatch alarm configurations
@@ -122,8 +122,8 @@ src/iden_q_auto_platform/
 
 ```python
 from aws_cdk import App, Stack
-from iden_q_auto_platform.packages.ecs_service import EcsServicePackage
-from iden_q_auto_platform.models.containers import EcsFargateTypes
+from cdk_auto_platform.packages.ecs_service import EcsServicePackage
+from cdk_auto_platform.models.containers import EcsFargateTypes
 
 app = App()
 stack = Stack(app, "MyStack")

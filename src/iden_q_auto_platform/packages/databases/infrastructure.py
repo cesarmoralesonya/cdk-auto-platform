@@ -12,9 +12,9 @@ from aws_cdk import (
 
 from constructs import Construct
 
-from iden_q_auto_platform.models.environments.app_environment import AppEnvironment
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.packages.federated_dns.infrastructure import FederatedDns
+from cdk_auto_platform.models.environments.app_environment import AppEnvironment
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.packages.federated_dns.infrastructure import FederatedDns
 
 
 class Databases(Construct):

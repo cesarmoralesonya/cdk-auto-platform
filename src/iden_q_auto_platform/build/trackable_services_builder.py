@@ -8,12 +8,12 @@ from aws_cdk.aws_cloudwatch import ComparisonOperator
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.packages.application_monitoring.infrastructure import (
+from cdk_auto_platform.packages.application_monitoring.infrastructure import (
     TrackableService
 )
 
 
-from iden_q_auto_platform.models.alarms import (
+from cdk_auto_platform.models.alarms import (
     AlarmCpuThresholds,
     AlarmMemoryThresholds,
     AlarmFreeStorageThresholds,
@@ -21,7 +21,7 @@ from iden_q_auto_platform.models.alarms import (
     AlarmIopsThresholds
 )
 
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 # endregion
 
 

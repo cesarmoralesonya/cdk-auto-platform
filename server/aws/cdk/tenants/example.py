@@ -1,4 +1,4 @@
-from iden_q_auto_platform.models.tenants.tenant_base import (
+from cdk_auto_platform.models.tenants.tenant_base import (
     IpPrivateRanges,
     PrefixListCidr,
     TenantBase,

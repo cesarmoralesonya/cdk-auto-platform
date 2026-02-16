@@ -17,14 +17,14 @@ from aws_cdk import (
 # endregion
 
 # region iden-q-auto-platform
-from iden_q_auto_platform.models.containers.registry_types import RegistryTypes
-from iden_q_auto_platform.models.modules.pug_module import PugModule
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.packages.secrets.parsers import (
+from cdk_auto_platform.models.containers.registry_types import RegistryTypes
+from cdk_auto_platform.models.modules.pug_module import PugModule
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.packages.secrets.parsers import (
     parse_secrets_for_ecs,
     parse_database_secret_for_ecs,
 )
-from iden_q_auto_platform.packages.secrets.names import DB_PASS, DB_USER
+from cdk_auto_platform.packages.secrets.names import DB_PASS, DB_USER
 
 # endregion
 

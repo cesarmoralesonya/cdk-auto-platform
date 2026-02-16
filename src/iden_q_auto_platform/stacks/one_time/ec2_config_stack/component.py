@@ -9,7 +9,7 @@ from aws_cdk import Stack
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.packages.instance_key_pair.infrastructure import (
+from cdk_auto_platform.packages.instance_key_pair.infrastructure import (
     InstanceKeyPair,
     OperatingSystem,
 )

@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, model_validator, ConfigDict
 
-from iden_q_auto_platform.models.alarms import AlarmCpuThresholds, AlarmMemoryThresholds
+from cdk_auto_platform.models.alarms import AlarmCpuThresholds, AlarmMemoryThresholds
 
 DEFAULT_MIN_CAPACITY = 1
 DEFAULT_MAX_CAPACITY = 30

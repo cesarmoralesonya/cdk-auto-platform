@@ -1,5 +1,5 @@
-from iden_q_auto_platform.models.database.rds_capacity import RdsCapacity
-from iden_q_auto_platform.models.database.rds_performance import RdsPerformance
+from cdk_auto_platform.models.database.rds_capacity import RdsCapacity
+from cdk_auto_platform.models.database.rds_performance import RdsPerformance
 
 
 class DatabaseBlueprint:

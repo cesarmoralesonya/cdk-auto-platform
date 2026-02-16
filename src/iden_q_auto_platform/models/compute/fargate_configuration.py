@@ -1,6 +1,6 @@
 from typing import List
 from enum import Enum
-from iden_q_auto_platform.models.compute.operating_system import OperatingSystem
+from cdk_auto_platform.models.compute.operating_system import OperatingSystem
 
 
 class FargateVirtualCpu(Enum):

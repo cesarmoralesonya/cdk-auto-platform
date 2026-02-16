@@ -2,7 +2,7 @@
 
 ## 📦 What Was Implemented
 
-A complete GitHub Actions CI/CD pipeline for packaging and publishing the `iden_q_auto_platform` Python module to GitHub Packages.
+A complete GitHub Actions CI/CD pipeline for packaging and publishing the `cdk_auto_platform` Python module to GitHub Packages.
 
 ## 🗂️ Files Created
 
@@ -29,7 +29,7 @@ A complete GitHub Actions CI/CD pipeline for packaging and publishing the `iden_
 
 ### Python Package Files
 
-1. **`src/iden_q_auto_platform/__init__.py`**
+1. **`src/cdk_auto_platform/__init__.py`**
    - Package initialization file
    - Contains `__version__` variable
    - Exports main components
@@ -179,7 +179,7 @@ To also publish to PyPI, add `PYPI_API_TOKEN` secret and update `publish.yml`.
    source test-env/bin/activate
    
    # Install from GitHub Packages (requires authentication)
-   pip install iden_q_auto_platform
+   pip install cdk_auto_platform
    ```
 
 ## 📝 Version Management
@@ -189,7 +189,7 @@ Current version: **1.0.45**
 Versions are managed in:
 
 - `src/pyproject.toml` → `[tool.bumpversion] current_version`
-- `src/iden_q_auto_platform/__init__.py` → `__version__`
+- `src/cdk_auto_platform/__init__.py` → `__version__`
 
 Use `bump-my-version` or the release workflow to keep them in sync.
 

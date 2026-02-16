@@ -1,6 +1,6 @@
 import os
 import aws_cdk.aws_rds as rds
-from iden_q_auto_platform.utils.validators.environment_validator import (
+from cdk_auto_platform.utils.validators.environment_validator import (
     EnvironmentValidator,
     load_dotenv,
 )

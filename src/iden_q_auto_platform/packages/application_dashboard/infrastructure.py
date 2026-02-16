@@ -7,9 +7,9 @@ from aws_cdk import (
     aws_cloudwatch as cloudwatch,
 )
 
-from iden_q_auto_platform.models.monitoring.trackable_service import TrackableService
-from iden_q_auto_platform.models.monitoring.drawable_service import DrawableService
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.monitoring.trackable_service import TrackableService
+from cdk_auto_platform.models.monitoring.drawable_service import DrawableService
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 TITLE_HEIGHT = 2
 

@@ -5,9 +5,9 @@ from aws_cdk import (
     aws_ec2 as ec2,
 )
 
-from iden_q_auto_platform.models.compute.operating_system import OperatingSystem
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.packages.instance_operations.scripts import user_data_script
+from cdk_auto_platform.models.compute.operating_system import OperatingSystem
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.packages.instance_operations.scripts import user_data_script
 
 
 class OperationsSizeT4g(Enum):

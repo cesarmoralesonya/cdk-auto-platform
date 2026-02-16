@@ -10,10 +10,10 @@ from aws_cdk import Stack
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.build.tag_rules_builder import TagRulesBuilder
+from cdk_auto_platform.build.tag_rules_builder import TagRulesBuilder
 # endregion
 
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 
 class PlaygroundStack(

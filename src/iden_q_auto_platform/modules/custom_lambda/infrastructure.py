@@ -19,11 +19,11 @@ from aws_cdk import (
 
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.modules.pug_module import PugModule
-from iden_q_auto_platform.models.modules.runtime.runtime_function import (
+from cdk_auto_platform.models.modules.pug_module import PugModule
+from cdk_auto_platform.models.modules.runtime.runtime_function import (
     RuntimeIFunction,
 )
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 DEFAULT_MEMORY_SIZE_MB = 128
 DEFAULT_EPHEMERAL_STORAGE_SIZE_MB = 512

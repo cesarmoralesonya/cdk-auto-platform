@@ -10,8 +10,8 @@ from aws_cdk.aws_rds import DatabaseInstance
 from aws_cdk.aws_ec2 import Port, PrefixList, Peer, SecurityGroup
 # endregion
 
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.models.environments.app_environment import AppEnvironment
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.environments.app_environment import AppEnvironment
 
 
 class FirewallRulesBuilder:

@@ -1,4 +1,4 @@
-from iden_q_auto_platform.models.vpc.ip_ranges_types import IpPrivateRanges
+from cdk_auto_platform.models.vpc.ip_ranges_types import IpPrivateRanges
 
 
 class VpcCidrBuilder:

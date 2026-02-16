@@ -1,5 +1,5 @@
 from jsii import Number
-from iden_q_auto_platform.models.compute.fargate_configuration import (
+from cdk_auto_platform.models.compute.fargate_configuration import (
     OperatingSystem,
     FargateConfigurations,
 )

@@ -1,6 +1,6 @@
 from enum import Enum
 from aws_cdk.aws_ecs_patterns import ApplicationLoadBalancedFargateService
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 
 class ScalingRulesBuilder:

@@ -4,7 +4,7 @@
 
 set -e
 
-echo "🔧 iden_q_auto_platform - Local Build and Test"
+echo "🔧 cdk_auto_platform - Local Build and Test"
 echo "================================================"
 
 # Change to src directory
@@ -45,6 +45,6 @@ echo ""
 echo "✨ Build completed successfully!"
 echo ""
 echo "Next steps:"
-echo "  - To test locally: pip install dist/iden_q_auto_platform-${VERSION}-py3-none-any.whl"
+echo "  - To test locally: pip install dist/cdk_auto_platform-${VERSION}-py3-none-any.whl"
 echo "  - To publish: Push a tag (e.g., git tag ${VERSION} && git push origin ${VERSION})"
 echo "  - Or use: gh workflow run release.yml"

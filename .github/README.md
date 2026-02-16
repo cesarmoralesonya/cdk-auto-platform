@@ -1,6 +1,6 @@
 # GitHub Actions Workflows
 
-This directory contains GitHub Actions workflows for the `iden_q_auto_platform` Python package.
+This directory contains GitHub Actions workflows for the `cdk_auto_platform` Python package.
 
 ## Workflows
 
@@ -87,7 +87,7 @@ To install the package from GitHub Releases:
 
 ```bash
 # Install latest release (replace version number)
-pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46-py3-none-any.whl
+pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/cdk_auto_platform-1.0.46-py3-none-any.whl
 ```
 
 ### Method 2: Download and Install
@@ -97,14 +97,14 @@ pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0
 # https://github.com/iden-q/iden-q-auto-platform/releases
 
 # Install locally
-pip install ./iden_q_auto_platform-1.0.46-py3-none-any.whl
+pip install ./cdk_auto_platform-1.0.46-py3-none-any.whl
 ```
 
 ### Method 3: Using requirements.txt
 
 ```text
 # requirements.txt
-iden_q_auto_platform @ https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/iden_q_auto_platform-1.0.46-py3-none-any.whl
+cdk_auto_platform @ https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/cdk_auto_platform-1.0.46-py3-none-any.whl
 ```
 
 ## Publishing to PyPI (Optional)
@@ -131,7 +131,7 @@ If you want to publish to the public PyPI instead of or in addition to GitHub Pa
 The project uses `bump-my-version` for version management. The version is stored in two places:
 
 - `src/pyproject.toml` (field: `tool.bumpversion.current_version`)
-- `src/iden_q_auto_platform/__init__.py` (variable: `__version__`)
+- `src/cdk_auto_platform/__init__.py` (variable: `__version__`)
 
 ### Manual Version Bump
 

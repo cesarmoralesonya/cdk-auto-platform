@@ -10,12 +10,12 @@ from aws_cdk import Stack
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.iam.oidc_providers import OidcProviders
-from iden_q_auto_platform.packages.iam.bitbucket_oidc.infrastructure import (
+from cdk_auto_platform.models.iam.oidc_providers import OidcProviders
+from cdk_auto_platform.packages.iam.bitbucket_oidc.infrastructure import (
     BitBucketOidc,
     BitBucketOidcParams,
 )
-from iden_q_auto_platform.packages.iam.github_oidc.infrastructure import GitHubOidc
+from cdk_auto_platform.packages.iam.github_oidc.infrastructure import GitHubOidc
 
 # endregion
 

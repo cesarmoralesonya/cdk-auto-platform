@@ -9,13 +9,13 @@ from aws_cdk import (
     aws_sns_subscriptions as sns_subscriptions,
 )
 
-from iden_q_auto_platform.models.tenants.cross_platform import (
+from cdk_auto_platform.models.tenants.cross_platform import (
     CrossPlatform,
     MsTeamsSecrets,
 )
-from iden_q_auto_platform.packages.secrets.parsers import parse_secrets_from_env
-from iden_q_auto_platform.models.monitoring.trackable_service import TrackableService
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.packages.secrets.parsers import parse_secrets_from_env
+from cdk_auto_platform.models.monitoring.trackable_service import TrackableService
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 
 class ApplicationMonitoring(Construct):

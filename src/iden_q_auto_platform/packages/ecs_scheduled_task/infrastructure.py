@@ -12,15 +12,15 @@ from aws_cdk.aws_secretsmanager import ISecret
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.build.service_secrets_builder import ServiceSecretsBuilder
-from iden_q_auto_platform.build.service_task_definition_builder import (
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.build.service_secrets_builder import ServiceSecretsBuilder
+from cdk_auto_platform.build.service_task_definition_builder import (
     ServiceTaskDefinitionBuilder,
     RegistryTypes,
     FileSystemParams,
     EcsComputeArchitecture,
 )
-from iden_q_auto_platform.modules.ecs_scheduled_fargate_task.infrastructure import (
+from cdk_auto_platform.modules.ecs_scheduled_fargate_task.infrastructure import (
     EcsScheduledFargateTaskParams,
     EcsScheduledFargateTaskPug,
 )

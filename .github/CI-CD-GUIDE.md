@@ -80,7 +80,7 @@ cd src
 pip install -e .
 
 # Or install from dist
-pip install dist/iden_q_auto_platform-*.whl
+pip install dist/cdk_auto_platform-*.whl
 ```
 
 ### Test in Another Project
@@ -91,10 +91,10 @@ python3.12 -m venv test-env
 source test-env/bin/activate
 
 # Install local build
-pip install /path/to/iden-q-auto-platform/src/dist/iden_q_auto_platform-*.whl
+pip install /path/to/iden-q-auto-platform/src/dist/cdk_auto_platform-*.whl
 
 # Test imports
-python -c "import iden_q_auto_platform; print(iden_q_auto_platform.__version__)"
+python -c "import cdk_auto_platform; print(cdk_auto_platform.__version__)"
 ```
 
 ## 📦 Installing Published Package
@@ -109,7 +109,7 @@ export GITHUB_TOKEN="your-personal-access-token"
 # Install
 pip install \
   --index-url "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/" \
-  iden_q_auto_platform
+  cdk_auto_platform
 ```
 
 ### Using requirements.txt
@@ -117,7 +117,7 @@ pip install \
 ```text
 # requirements.txt
 --index-url https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/
-iden_q_auto_platform==1.0.45
+cdk_auto_platform==1.0.45
 ```
 
 ## 🐛 Troubleshooting
@@ -187,9 +187,9 @@ pip install -r requirements.txt
 # Uses autopep8 and black
 source .venv/bin/activate
 cd src
-autopep8 --in-place --recursive --aggressive --max-line-length 120 iden_q_auto_platform
-black --line-length 120 iden_q_auto_platform
-flake8 iden_q_auto_platform
+autopep8 --in-place --recursive --aggressive --max-line-length 120 cdk_auto_platform
+black --line-length 120 cdk_auto_platform
+flake8 cdk_auto_platform
 ```
 
 ### Run CDK Commands

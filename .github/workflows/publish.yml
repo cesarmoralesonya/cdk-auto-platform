@@ -74,20 +74,20 @@ jobs:
           tag_name: ${{ steps.get_version.outputs.version }}
           generate_release_notes: true
           body: |
-            ## iden_q_auto_platform ${{ steps.get_version.outputs.version }}
+            ## cdk_auto_platform ${{ steps.get_version.outputs.version }}
 
             ### Installation
 
             Download the wheel file from the assets below and install:
 
             ```bash
-            pip install iden_q_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
+            pip install cdk_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
             ```
 
             Or install directly from this release:
 
             ```bash
-            pip install https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/iden_q_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
+            pip install https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/cdk_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
             ```
 
             ### What's Changed

@@ -12,15 +12,15 @@ from aws_cdk.aws_ecs import CpuArchitecture
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
-from iden_q_auto_platform.modules.ecr_registry.infrastructure import EcrRegistryPug
-from iden_q_auto_platform.modules.container_image.infrastructure import (
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.modules.ecr_registry.infrastructure import EcrRegistryPug
+from cdk_auto_platform.modules.container_image.infrastructure import (
     RegistryTypes,
     ContainerImageParams,
     ContainerImagePug
 )
-from iden_q_auto_platform.modules.logs.log_group.infrastructure import LogGroupPug
-from iden_q_auto_platform.modules.ecs_fargate_task_definition.infrastructure import (
+from cdk_auto_platform.modules.logs.log_group.infrastructure import LogGroupPug
+from cdk_auto_platform.modules.ecs_fargate_task_definition.infrastructure import (
     LogGroupParams,
     EcsFargateTaskDefinitionParams,
     EcsFargateTaskDefinitionPug,

@@ -16,8 +16,8 @@ from aws_cdk import (
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.modules.pug_module import PugModule
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.modules.pug_module import PugModule
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 # endregion
 

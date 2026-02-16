@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-from iden_q_auto_platform.models.database.database_privileges import DatabasePrivileges
+from cdk_auto_platform.models.database.database_privileges import DatabasePrivileges
 
 
 class ServiceUserSecret(BaseModel):

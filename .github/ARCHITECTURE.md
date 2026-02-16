@@ -129,7 +129,7 @@ src/
 ├── pyproject.toml                  ← Package metadata & version
 ├── MANIFEST.in                     ← Distribution file rules
 ├── CHANGELOG.md                    ← Version history
-└── iden_q_auto_platform/
+└── cdk_auto_platform/
     ├── __init__.py                 ← Version variable
     ├── build/
     ├── models/
@@ -146,7 +146,7 @@ Current Version: 1.0.45
 
 Stored in:
 ├── src/pyproject.toml [tool.bumpversion] current_version = "1.0.45"
-└── src/iden_q_auto_platform/__init__.py __version__ = "1.0.45"
+└── src/cdk_auto_platform/__init__.py __version__ = "1.0.45"
 
 Managed by: bump-my-version
 
@@ -211,8 +211,8 @@ Developer Actions:
 GitHub Actions Output:
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                                                                          │
-│  ✅ Package built: iden_q_auto_platform-1.0.46-py3-none-any.whl        │
-│  ✅ Source dist:   iden_q_auto_platform-1.0.46.tar.gz                  │
+│  ✅ Package built: cdk_auto_platform-1.0.46-py3-none-any.whl        │
+│  ✅ Source dist:   cdk_auto_platform-1.0.46.tar.gz                  │
 │  ✅ Published to:  GitHub Packages                                      │
 │  ✅ Release:       github.com/iden-q/iden-q-auto-platform/releases     │
 │                                                                          │
@@ -223,7 +223,7 @@ Installation:
 │                                                                          │
 │  pip install \                                                          │
 │    --index-url https://USER:TOKEN@pypi.pkg.github.com/...             │
-│    iden_q_auto_platform                                                 │
+│    cdk_auto_platform                                                 │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 

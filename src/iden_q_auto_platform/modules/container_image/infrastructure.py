@@ -15,9 +15,9 @@ from aws_cdk import (
 # endregion
 
 # region iden-q-auto-platform
-from iden_q_auto_platform.models.containers.registry_types import RegistryTypes
-from iden_q_auto_platform.models.modules.pug_module import PugModule
-from iden_q_auto_platform.utils.configs import DeploymentConfig
+from cdk_auto_platform.models.containers.registry_types import RegistryTypes
+from cdk_auto_platform.models.modules.pug_module import PugModule
+from cdk_auto_platform.utils.configs import DeploymentConfig
 
 # endregion
 

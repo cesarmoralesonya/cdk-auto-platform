@@ -10,8 +10,8 @@ from aws_cdk import (
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.packages.secrets.parsers import parse_secrets_from_env
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.packages.secrets.parsers import parse_secrets_from_env
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 # endregion
 
 

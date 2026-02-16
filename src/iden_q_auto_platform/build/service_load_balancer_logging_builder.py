@@ -13,7 +13,7 @@ import aws_cdk.aws_athena as athena
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 # endregion
 
 

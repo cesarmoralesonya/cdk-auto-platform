@@ -134,14 +134,14 @@
             "problemMatcher": []
         },
         {
-            "label": "format python code src/iden_q_auto_platform",
+            "label": "format python code src/cdk_auto_platform",
             "type": "shell",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
             "osx": {
-                "command": "source .venv/bin/activate && autopep8 --in-place --recursive --aggressive --max-line-length 120 src/iden_q_auto_platform && black --line-length 120 src/iden_q_auto_platform && black src/iden_q_auto_platform && flake8 src/iden_q_auto_platform"
+                "command": "source .venv/bin/activate && autopep8 --in-place --recursive --aggressive --max-line-length 120 src/cdk_auto_platform && black --line-length 120 src/cdk_auto_platform && black src/cdk_auto_platform && flake8 src/cdk_auto_platform"
             },
         },
         {
@@ -151,7 +151,7 @@
                 "kind": "build",
                 "isDefault": true
             },
-            "dependsOn": "format python code src/iden_q_auto_platform",
+            "dependsOn": "format python code src/cdk_auto_platform",
             "dependsOrder": "sequence",
             "osx": {
                 "command": "source .venv/bin/activate && autopep8 --in-place --recursive --aggressive --max-line-length 120 ${input:iacServerDir} && black --line-length 120 ${input:iacServerDir} && black ${input:iacServerDir} && flake8 ${input:iacServerDir}"

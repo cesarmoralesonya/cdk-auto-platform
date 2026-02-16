@@ -1,7 +1,7 @@
 from enum import Enum
 from typing import Optional
-from iden_q_auto_platform.models.database.service_user_secret import ServiceUserSecret
-from iden_q_auto_platform.models.environments.app_environment import AppEnvironment
+from cdk_auto_platform.models.database.service_user_secret import ServiceUserSecret
+from cdk_auto_platform.models.environments.app_environment import AppEnvironment
 
 type _DatabaseInstances = Enum
 type _PersistentDatabases = Enum

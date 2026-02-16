@@ -3,11 +3,11 @@ from aws_cdk import (
     aws_lambda_event_sources as lambda_event_sources,
 )
 
-from iden_q_auto_platform.models.modules.pug_module import PugModule
-from iden_q_auto_platform.models.modules.runtime.runtime_function import (
+from cdk_auto_platform.models.modules.pug_module import PugModule
+from cdk_auto_platform.models.modules.runtime.runtime_function import (
     RuntimeIFunction,
 )
-from iden_q_auto_platform.models.modules.runtime.runtime_event_source import (
+from cdk_auto_platform.models.modules.runtime.runtime_event_source import (
     RuntimeIEventSource,
 )
 

@@ -1,6 +1,6 @@
 from constructs import Construct
 
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 from aws_cdk import (
     aws_ec2 as ec2,

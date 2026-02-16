@@ -1,17 +1,17 @@
 from enum import Enum
 from typing import Optional
-from iden_q_auto_platform.build.vpc_cidr_builder import VpcCidrBuilder
-from iden_q_auto_platform.models.environments.app_environment import AppEnvironment
-from iden_q_auto_platform.models.blueprints\
+from cdk_auto_platform.build.vpc_cidr_builder import VpcCidrBuilder
+from cdk_auto_platform.models.environments.app_environment import AppEnvironment
+from cdk_auto_platform.models.blueprints\
     .ecs_fargate_blueprint import EcsFargateBlueprint
 
-from iden_q_auto_platform.models.blueprints.database_blueprint import DatabaseBlueprint
+from cdk_auto_platform.models.blueprints.database_blueprint import DatabaseBlueprint
 
 
-from iden_q_auto_platform.models.tenants\
+from cdk_auto_platform.models.tenants\
     .infrastructure_types import InfrastructureTypes
-from iden_q_auto_platform.models.vpc.ip_ranges_types import IpPrivateRanges
-from iden_q_auto_platform.models.vpc.prefix_list_cidr import PrefixListCidr
+from cdk_auto_platform.models.vpc.ip_ranges_types import IpPrivateRanges
+from cdk_auto_platform.models.vpc.prefix_list_cidr import PrefixListCidr
 
 
 class TenantBase:

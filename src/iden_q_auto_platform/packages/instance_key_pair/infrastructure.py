@@ -6,7 +6,7 @@ from aws_cdk import (
     aws_secretsmanager as secretsmanager,
 )
 
-from iden_q_auto_platform.models.compute.operating_system import OperatingSystem
+from cdk_auto_platform.models.compute.operating_system import OperatingSystem
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives.asymmetric import ed25519
 from cryptography.hazmat.primitives import serialization

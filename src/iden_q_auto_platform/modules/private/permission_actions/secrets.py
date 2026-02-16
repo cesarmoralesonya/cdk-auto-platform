@@ -1,4 +1,4 @@
-from iden_q_auto_platform.models.modules.permission_action import PermissionAction
+from cdk_auto_platform.models.modules.permission_action import PermissionAction
 
 
 class GetSecretPermissionAction(PermissionAction):

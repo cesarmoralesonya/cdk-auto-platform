@@ -1,10 +1,10 @@
 from typing import Sequence, Optional
-from iden_q_auto_platform.models.containers.ecs_fargate_types import EcsFargateTypes
-from iden_q_auto_platform.models.compute.fargate_task_compute import FargateTaskCompute
-from iden_q_auto_platform.models.compute.compute_time_configuration import (
+from cdk_auto_platform.models.containers.ecs_fargate_types import EcsFargateTypes
+from cdk_auto_platform.models.compute.fargate_task_compute import FargateTaskCompute
+from cdk_auto_platform.models.compute.compute_time_configuration import (
     ComputeTimeConfiguration,
 )
-from iden_q_auto_platform.models.compute.scaling_rule import ScalingRule
+from cdk_auto_platform.models.compute.scaling_rule import ScalingRule
 
 
 class EcsFargateBlueprint:

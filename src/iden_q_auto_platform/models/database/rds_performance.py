@@ -1,7 +1,7 @@
 from aws_cdk.aws_rds import IEngine
-from iden_q_auto_platform.models.database.engine_types import EngineTypes
-from iden_q_auto_platform.models.database.instance_family import InstanceFamily
-from iden_q_auto_platform.models.database.instance_size import InstanceSize
+from cdk_auto_platform.models.database.engine_types import EngineTypes
+from cdk_auto_platform.models.database.instance_family import InstanceFamily
+from cdk_auto_platform.models.database.instance_size import InstanceSize
 
 
 class RdsPerformance:

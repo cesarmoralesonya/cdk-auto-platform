@@ -1,9 +1,9 @@
 from typing import Sequence
 from aws_cdk import aws_lambda as _lambda, aws_iam as iam
 
-from iden_q_auto_platform.models.modules.pug_module import PugModule
-from iden_q_auto_platform.models.modules.permission_action import PermissionAction
-from iden_q_auto_platform.models.modules.runtime.runtime_function import (
+from cdk_auto_platform.models.modules.pug_module import PugModule
+from cdk_auto_platform.models.modules.permission_action import PermissionAction
+from cdk_auto_platform.models.modules.runtime.runtime_function import (
     RuntimeIFunction,
 )
 

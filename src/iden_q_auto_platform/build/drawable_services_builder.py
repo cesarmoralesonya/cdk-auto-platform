@@ -8,8 +8,8 @@ from aws_cdk.aws_rds import DatabaseInstance
 # endregion
 
 # region: iden-q-auto-platform
-from iden_q_auto_platform.models.monitoring.colors import Colors
-from iden_q_auto_platform.packages.application_dashboard.infrastructure import (
+from cdk_auto_platform.models.monitoring.colors import Colors
+from cdk_auto_platform.packages.application_dashboard.infrastructure import (
     DrawableService,
 )
 # endregion

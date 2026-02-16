@@ -2,7 +2,7 @@ from constructs import Construct
 
 from aws_cdk import aws_codeartifact as codeartifact
 
-from iden_q_auto_platform.models.tenants.tenant_base import TenantBase
+from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 
 class CodeArtifactDomain(Construct):
