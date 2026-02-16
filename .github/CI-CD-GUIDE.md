@@ -22,7 +22,7 @@ gh workflow run release.yml -f bump_type=patch -f create_release=true
 2. ✅ Commits and pushes the changes
 3. ✅ Creates a git tag
 4. ✅ Builds the package
-5. ✅ Publishes to GitHub Packages
+5. ✅ Publishes to PyPI
 6. ✅ Creates a GitHub Release
 
 ### Option 2: Manual Tag Push
@@ -34,16 +34,9 @@ gh workflow run release.yml -f bump_type=patch -f create_release=true
 # Create and push tag
 git tag 1.0.46
 git push origin 1.0.46
-
-# This triggers the publish workflow automatically
 ```
 
-### Option 3: Manual Workflow Trigger
-
-```bash
-# Trigger publish without version bump
-gh workflow run publish.yml
-```
+Note: Manual tag pushes do not automatically trigger publishing. Use the release workflow instead.
 
 ## 🔍 Checking Build Status
 
@@ -99,25 +92,21 @@ python -c "import cdk_auto_platform; print(cdk_auto_platform.__version__)"
 
 ## 📦 Installing Published Package
 
-### From GitHub Packages
+### From PyPI
 
 ```bash
-# Configure authentication
-export GITHUB_USERNAME="your-username"
-export GITHUB_TOKEN="your-personal-access-token"
+# Install latest version
+pip install cdk-auto-platform
 
-# Install
-pip install \
-  --index-url "https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/" \
-  cdk_auto_platform
+# Install specific version
+pip install cdk-auto-platform==1.0.58
 ```
 
 ### Using requirements.txt
 
 ```text
 # requirements.txt
---index-url https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@pypi.pkg.github.com/iden-q/iden-q-auto-platform/simple/
-cdk_auto_platform==1.0.45
+cdk-auto-platform==1.0.58
 ```
 
 ## 🐛 Troubleshooting
@@ -160,7 +149,7 @@ curl -H "Authorization: token $GITHUB_TOKEN" \
 
 ```bash
 # View failed workflow
-gh run list --workflow=publish.yml --limit 5
+gh run list --workflow=release.yml --limit 5
 
 # View logs
 gh run view WORKFLOW_RUN_ID --log
@@ -211,17 +200,16 @@ PYTHONPATH="src:server/aws/cdk" cdk deploy --profile YOUR_PROFILE
 The workflows use these secrets (automatically provided):
 
 - `GITHUB_TOKEN`: Automatically provided by GitHub Actions
-  - Used for: Publishing to GitHub Packages, creating releases
+  - Used for: Creating releases
 
-No additional secrets are required unless publishing to PyPI.
+PyPI publishing uses OpenID Connect (OIDC) Trusted Publishing - no API tokens required.
 
 ## 📊 Workflow Matrix
 
 | Workflow | Trigger | Purpose | Duration |
 |----------|---------|---------|----------|
 | Build and Test | Push/PR | Validate build | ~2-3 min |
-| Publish Package | Tag push | Publish to GitHub | ~3-5 min |
-| Create Release | Manual | Bump version & publish | ~5-7 min |
+| Create Release | Manual | Bump version, publish to PyPI & create release | ~5-7 min |
 
 ## 🎯 Best Practices
 
@@ -237,4 +225,4 @@ No additional secrets are required unless publishing to PyPI.
 - [GitHub Actions Workflows](.github/workflows/)
 - [Workflow Documentation](.github/README.md)
 - [Project README](../README.md)
-- [GitHub Packages Docs](https://docs.github.com/packages)
+- [PyPI Trusted Publishing](https://docs.pypi.org/trusted-publishers/)
