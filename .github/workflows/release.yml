@@ -68,10 +68,3 @@ jobs:
             - name: Push changes
               run: |
                   git push origin main --follow-tags
-
-    publish:
-        needs: bump-version
-        uses: ./.github/workflows/publish.yml
-        with:
-            version: ${{ needs.bump-version.outputs.new_version }}
-        secrets: inherit
