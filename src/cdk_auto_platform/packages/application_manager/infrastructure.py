@@ -1,3 +1,5 @@
+from typing import Any
+
 from cdk_auto_platform.models.tenants.tenant_base import TenantBase
 
 from aws_cdk import aws_servicecatalogappregistry as appreg
@@ -5,7 +7,7 @@ from constructs import Construct
 
 
 class ApplicationManager(Construct):
-    def __init__(self, scope: Construct, tenant: TenantBase, stack_id: str, **kwargs):
+    def __init__(self, scope: Construct, tenant: TenantBase, stack_id: str, **kwargs: Any):
         super().__init__(scope, "application-manager", **kwargs)
         app = appreg.CfnApplication(
             self,

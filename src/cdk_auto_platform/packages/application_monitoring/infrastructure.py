@@ -1,3 +1,5 @@
+from typing import Any
+
 from constructs import Construct
 from aws_cdk import (
     Aws,
@@ -24,7 +26,7 @@ class ApplicationMonitoring(Construct):
         scope: Construct,
         tenant: TenantBase,
         trackable_services: list[TrackableService],
-        **kwargs,
+        **kwargs: Any,
     ):
         super().__init__(scope, "app-monitoring", **kwargs)
         self.sns_topic = self.create_sns_topic(tenant)
@@ -98,9 +100,13 @@ class ApplicationMonitoring(Construct):
             ),
         )
 
+        notifier_id = (
+            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-"
+            f"{CrossPlatform.MS_TEAMS.value}-notifier"
+        )
         ms_teams_notifier_lambda = lambda_.Function(
             self,
-            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{CrossPlatform.MS_TEAMS.value}-notifier",
+            notifier_id,
             runtime=lambda_.Runtime.PYTHON_3_8,
             handler="index.handler",
             code=lambda_.Code.from_asset(

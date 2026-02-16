@@ -1,4 +1,5 @@
 from enum import Enum
+from typing import Any
 from constructs import Construct
 
 from aws_cdk import (
@@ -23,7 +24,7 @@ class ApplicationDashboard(Construct):
         drawable_services: list[DrawableService],
         trackable_wit_alarm_services: list[TrackableService],
         database_instance_is_unique: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ):
         super().__init__(scope, "app-dashboard", **kwargs)
 
@@ -31,7 +32,7 @@ class ApplicationDashboard(Construct):
 
         self.widgets: list[list[cloudwatch.IWidget]] = []
 
-        left_widgets = []
+        left_widgets: list[cloudwatch.IWidget] = []
 
         for drawable_service in drawable_services:
             drawable_service_name = (
@@ -45,7 +46,7 @@ class ApplicationDashboard(Construct):
             )
             drawing_nickname = f"{drawable_service_name} " f" Metrics"
 
-            modified_metrics = []
+            modified_metrics: list[cloudwatch.Metric] = []
             for metric in drawable_service.metrics:
                 label = f"{metric.metric_name} [{metric.namespace}]"
                 modified_metric = metric.with_(label=label)
@@ -56,7 +57,6 @@ class ApplicationDashboard(Construct):
                 cloudwatch.GraphWidget(
                     legend_position=cloudwatch.LegendPosition.BOTTOM,
                     view=cloudwatch.GraphWidgetView.TIME_SERIES,
-                    prod_data=True,
                     title=drawing_nickname,
                     left=modified_metrics,
                     left_y_axis=cloudwatch.YAxisProps(min=0, show_units=True),
@@ -76,11 +76,13 @@ class ApplicationDashboard(Construct):
 
         db_log_error_names = (
             [
-                f"/aws/rds/instance/{tenant.company}-{tenant.product.value}-{tenant.environment.value}-db-server/error"
+                f"/aws/rds/instance/{tenant.company}-{tenant.product.value}-"
+                f"{tenant.environment.value}-db-server/error"
             ]
             if database_instance_is_unique
             else [
-                f"/aws/rds/instance/{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{db_instance.value}-db-server/error"
+                f"/aws/rds/instance/{tenant.company}-{tenant.product.value}-"
+                f"{tenant.environment.value}-{db_instance.value}-db-server/error"
                 for db_instance in database_instances
             ]
         )
@@ -118,7 +120,7 @@ class ApplicationDashboard(Construct):
             height=12,
         )
 
-        right_widgets = [logs_widget, alarm_status_widget]
+        right_widgets: list[cloudwatch.IWidget] = [logs_widget, alarm_status_widget]
         self.widgets.append(right_widgets)
 
         self.cw_dashboard = cloudwatch.Dashboard(
