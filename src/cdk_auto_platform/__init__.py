@@ -4,7 +4,7 @@ cdk_auto_platform - AWS CDK Platform Extension
 This CDK extension provides a platform for building CDK applications.
 """
 
-__version__ = "1.0.56"
+__version__ = "1.0.57"
 __author__ = "Cesar Morales"
 __email__ = "me@cesarmoralesonya.es"
 
