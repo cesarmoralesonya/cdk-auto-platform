@@ -20,10 +20,14 @@ on:
 permissions:
   contents: write
   packages: write
+  id-token: write
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/cdk-auto-platform/
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -67,6 +71,11 @@ jobs:
           cd src
           twine check dist/*
 
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: src/dist/
+
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
@@ -78,10 +87,16 @@ jobs:
 
             ### Installation
 
-            Download the wheel file from the assets below and install:
+            Install from PyPI:
 
             ```bash
-            pip install cdk_auto_platform-${{ steps.get_version.outputs.version }}-py3-none-any.whl
+            pip install cdk-auto-platform
+            ```
+
+            Or install a specific version:
+
+            ```bash
+            pip install cdk-auto-platform==${{ steps.get_version.outputs.version }}
             ```
 
             Or install directly from this release:
