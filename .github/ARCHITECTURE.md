@@ -47,7 +47,7 @@
 │            ▼                                                             │
 │  ┌─────────────────────────────────┐                                   │
 │  │  Publish Job                    │                                   │
-│  │  (calls publish.yml)            │                                   │
+│  │  (inline - publishes to PyPI)   │                                   │
 │  └─────────────────────────────────┘                                   │
 │                                                                          │
 │  Result: ✅ New version created and published                           │
@@ -80,8 +80,8 @@
 │            │                                                             │
 │            ▼                                                             │
 │  ┌─────────────────────────────────┐                                   │
-│  │  Publish to GitHub Packages     │                                   │
-│  │  - Uses GITHUB_TOKEN            │                                   │
+│  │  Publish to PyPI                │                                   │
+│  │  - Uses Trusted Publishing      │                                   │
 │  └─────────┬───────────────────────┘                                   │
 │            │                                                             │
 │            ▼                                                             │
@@ -196,15 +196,9 @@ Developer Actions:
 │  └────────────────────────────────────────┘                            │
 │                      │                                                   │
 │                      ▼                                                   │
-│  [Publish workflow triggered]                                           │
+│  [Tag created but publish must be manual]                               │
 │                                                                          │
-│  Option 3: Manual Publish                                               │
-│  ┌────────────────────────────────────────┐                            │
-│  │ gh workflow run publish.yml            │                            │
-│  └────────────────────────────────────────┘                            │
-│                      │                                                   │
-│                      ▼                                                   │
-│  [Package published with current version]                               │
+│  (Manual tag pushes no longer auto-trigger. Use release workflow.)      │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 
@@ -213,17 +207,15 @@ GitHub Actions Output:
 │                                                                          │
 │  ✅ Package built: cdk_auto_platform-1.0.46-py3-none-any.whl        │
 │  ✅ Source dist:   cdk_auto_platform-1.0.46.tar.gz                  │
-│  ✅ Published to:  GitHub Packages                                      │
-│  ✅ Release:       github.com/iden-q/iden-q-auto-platform/releases     │
+│  ✅ Published to:  PyPI                                                 │
+│  ✅ Release:       github.com/cesarmoralesonya/cdk-auto-platform       │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 
 Installation:
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                                                                          │
-│  pip install \                                                          │
-│    --index-url https://USER:TOKEN@pypi.pkg.github.com/...             │
-│    cdk_auto_platform                                                 │
+│  pip install cdk-auto-platform                                          │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 

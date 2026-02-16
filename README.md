@@ -1,7 +1,7 @@
-# iden-q-auto-platform
+# cdk-auto-platform
 
-[![Build and Test](https://github.com/iden-q/iden-q-auto-platform/actions/workflows/build.yml/badge.svg)](https://github.com/iden-q/iden-q-auto-platform/actions/workflows/build.yml)
-[![Publish Python Package](https://github.com/iden-q/iden-q-auto-platform/actions/workflows/publish.yml/badge.svg)](https://github.com/iden-q/iden-q-auto-platform/actions/workflows/publish.yml)
+[![Build and Test](https://github.com/cesarmoralesonya/cdk-auto-platform/actions/workflows/build.yml/badge.svg)](https://github.com/cesarmoralesonya/cdk-auto-platform/actions/workflows/build.yml)
+[![PyPI version](https://badge.fury.io/py/cdk-auto-platform.svg)](https://pypi.org/project/cdk-auto-platform/)
 
 IaC platform engineering library based on AWS CDK
 
@@ -11,23 +11,23 @@ IaC platform engineering library based on AWS CDK
 
 ## Installation
 
-### From GitHub Releases
-
-Download the wheel or source distribution from the [latest release](https://github.com/iden-q/iden-q-auto-platform/releases):
+### From PyPI (Recommended)
 
 ```bash
-# Install from wheel
-pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/cdk_auto_platform-1.0.46-py3-none-any.whl
+pip install cdk-auto-platform
+```
 
-# Or install from source tarball
-pip install https://github.com/iden-q/iden-q-auto-platform/releases/download/1.0.46/cdk_auto_platform-1.0.46.tar.gz
+### From GitHub Releases
+
+```bash
+pip install https://github.com/cesarmoralesonya/cdk-auto-platform/releases/download/1.0.58/cdk_auto_platform-1.0.58-py3-none-any.whl
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/iden-q/iden-q-auto-platform.git
-cd iden-q-auto-platform/src
+git clone https://github.com/cesarmoralesonya/cdk-auto-platform.git
+cd cdk-auto-platform/src
 pip install -e .
 ```
 
@@ -73,26 +73,12 @@ pip install -r requirements.txt
 
 ### Publishing
 
-The package is automatically published via GitHub Actions when:
+The package is published to PyPI via GitHub Actions:
 
-1. **Automatic**: Push a version tag
-
-   ```bash
-   git tag 1.0.46
-   git push origin 1.0.46
-   ```
-
-2. **Semi-Automatic**: Use the release workflow
-
-   ```bash
-   gh workflow run release.yml -f bump_type=patch
-   ```
-
-3. **Manual**: Trigger the publish workflow
-
-   ```bash
-   gh workflow run publish.yml
-   ```
+```bash
+# Use the release workflow (recommended)
+gh workflow run release.yml -f bump_type=patch -f create_release=true
+```
 
 See [.github/README.md](.github/README.md) for detailed workflow documentation.
 

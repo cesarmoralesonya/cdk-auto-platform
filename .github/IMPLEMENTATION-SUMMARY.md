@@ -2,7 +2,7 @@
 
 ## 📦 What Was Implemented
 
-A complete GitHub Actions CI/CD pipeline for packaging and publishing the `cdk_auto_platform` Python module to GitHub Packages.
+A complete GitHub Actions CI/CD pipeline for packaging and publishing the `cdk_auto_platform` Python module to PyPI.
 
 ## 🗂️ Files Created
 
@@ -14,18 +14,12 @@ A complete GitHub Actions CI/CD pipeline for packaging and publishing the `cdk_a
    - Validates package with `twine check`
    - Uploads build artifacts
 
-2. **`.github/workflows/publish.yml`**
-   - Publishes package to GitHub Packages
-   - Triggers on version tags (e.g., `1.0.46`)
-   - Can be manually triggered
-   - Creates GitHub Releases
-   - Supports `workflow_call` for reusable workflows
-
-3. **`.github/workflows/release.yml`**
+2. **`.github/workflows/release.yml`**
    - Automated version bumping workflow
    - Manual trigger with bump type selection (patch/minor/major)
    - Uses `bump-my-version` for version management
-   - Automatically calls publish workflow after bumping
+   - Publishes to PyPI using Trusted Publishing (OIDC)
+   - Creates GitHub Releases
 
 ### Python Package Files
 
@@ -104,13 +98,13 @@ git push origin 1.0.46
 
 - ✅ Automated version bumping with semantic versioning
 - ✅ Multi-Python version testing (3.11, 3.12)
-- ✅ Automatic publishing to GitHub Packages
+- ✅ Automatic publishing to PyPI
 - ✅ GitHub Release creation with artifacts
 - ✅ Package validation with twine
 - ✅ Local testing scripts
 - ✅ Comprehensive documentation
 - ✅ Version consistency checking
-- ✅ Reusable workflows
+- ✅ PyPI Trusted Publishing (OIDC - no API tokens needed)
 
 ## 🔧 Configuration
 
@@ -122,19 +116,16 @@ git push origin 1.0.46
 
 ### Secrets
 
-No additional secrets required! The workflows use `GITHUB_TOKEN` which is automatically provided by GitHub Actions.
-
-### Optional: PyPI Publishing
-
-To also publish to PyPI, add `PYPI_API_TOKEN` secret and update `publish.yml`.
+No additional secrets required! The workflows use:
+- `GITHUB_TOKEN` for creating releases (automatically provided by GitHub Actions)
+- PyPI Trusted Publishing (OIDC) for PyPI uploads (no tokens needed)
 
 ## 📊 Workflow Triggers
 
-| Workflow | Automatic | Manual | Tag Push |
-|----------|-----------|--------|----------|
-| Build and Test | ✅ (push/PR) | ❌ | ❌ |
-| Publish Package | ❌ | ✅ | ✅ |
-| Create Release | ❌ | ✅ | ❌ |
+| Workflow | Automatic | Manual |
+|----------|-----------|--------|
+| Build and Test | ✅ (push/PR) | ❌ |
+| Create Release | ❌ | ✅ |
 
 ## 🎯 Next Steps
 
