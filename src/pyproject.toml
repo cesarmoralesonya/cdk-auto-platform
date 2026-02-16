@@ -68,7 +68,7 @@ version = { attr = "cdk_auto_platform.__version__" }
 
 [tool.bumpversion]
 allow_dirty = true
-current_version = "1.0.58"
+current_version = "1.0.59"
 commit = true
 commit_args = "--no-verify"
 tag = true
