@@ -27,9 +27,7 @@ class ApplicationDashboard(Construct):
     ):
         super().__init__(scope, "app-dashboard", **kwargs)
 
-        APPLICATION_DASHBOARD_NAME = (
-            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-dashboard"
-        )
+        APPLICATION_DASHBOARD_NAME = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-dashboard"
 
         self.widgets: list[list[cloudwatch.IWidget]] = []
 
@@ -140,5 +138,7 @@ class ApplicationDashboard(Construct):
             "dashboard-output",
             value=cloudwatch_dashboard_url,
             description="CloudWatch Dashboard URL",
-            export_name=(f"DashboardURL-{tenant.company}-{tenant.product.value}-{tenant.environment.value}"),
+            export_name=(
+                f"DashboardURL-{tenant.company}-{tenant.product.value}-{tenant.environment.value}"
+            ),
         )

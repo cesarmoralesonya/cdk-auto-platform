@@ -76,7 +76,9 @@ class ApplicationMonitoring(Construct):
         self.trackable_wit_alarm_services.append(trackable_service)
 
     def create_sns_topic(self, tenant: TenantBase):
-        topic_name = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-topic"
+        topic_name = (
+            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-topic"
+        )
         return sns.Topic(self, topic_name, display_name=topic_name)
 
     def create_notification_lambda(self, tenant: TenantBase):

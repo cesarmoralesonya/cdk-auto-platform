@@ -120,7 +120,7 @@ class LambdaParams:
                 else ecr_assets.Platform.LINUX_AMD64
             )
             return lambda_.Code.from_asset_image(
-                '.',
+                ".",
                 exclude=self.exclude,
                 asset_name=f"{self.lambda_name}-image",
                 platform=platform,
@@ -151,9 +151,7 @@ class LambdaPug(PugModule[lambda_.IFunction]):
         tenant: TenantBase,
         params: LambdaParams,
     ) -> None:
-        TENANT_ENVIRONMENT_LAMBDA_NAME = (
-            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{params.lambda_name}"
-        )
+        TENANT_ENVIRONMENT_LAMBDA_NAME = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{params.lambda_name}"
 
         function = lambda_.Function(
             scope,

@@ -17,7 +17,9 @@ class CodeArtifactRepository(Construct):
     ):
         super().__init__(scope, "code-artifact-repository", **kwargs)
         REPOSITORY_NAME = (
-            f"{tenant.company}-{tenant.product.value}-" f"{tenant.environment.value}-" f"{repository_name}"
+            f"{tenant.company}-{tenant.product.value}-"
+            f"{tenant.environment.value}-"
+            f"{repository_name}"
         )
 
         self.repository = codeartifact.CfnRepository(

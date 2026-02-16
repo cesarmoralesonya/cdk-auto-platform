@@ -28,7 +28,9 @@ class Networking(Construct):
             entries=entries,
         )
 
-        TENANT_VPC_NAME = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-vpc"
+        TENANT_VPC_NAME = (
+            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-vpc"
+        )
         self.tenant_vpc = ec2.Vpc(
             self,
             TENANT_VPC_NAME,

@@ -103,9 +103,7 @@ class EcsFargateTaskDefinitionPug(PugModule[ecs.FargateTaskDefinition]):
         params: EcsFargateTaskDefinitionParams,
     ) -> None:
         TASK_DEFINITION_SUFFIX = f"{params.service_type.value}-task-definition"
-        TASK_DEFINITION_NAME = (
-            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{TASK_DEFINITION_SUFFIX}"
-        )
+        TASK_DEFINITION_NAME = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}-{TASK_DEFINITION_SUFFIX}"
 
         task_definition = ecs.FargateTaskDefinition(
             scope,

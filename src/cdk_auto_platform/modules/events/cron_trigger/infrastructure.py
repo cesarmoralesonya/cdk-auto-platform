@@ -40,7 +40,9 @@ class CronTrigger(PugModule[events.IRule]):
         self, scope: Construct, tenant: TenantBase, params: CronTriggerParams
     ) -> None:
         TENANT_environment_TARGET_NAME = (
-            f"{tenant.company}-{tenant.product.value}-" f"{tenant.environment.value}-" f"{params.target_name}"
+            f"{tenant.company}-{tenant.product.value}-"
+            f"{tenant.environment.value}-"
+            f"{params.target_name}"
         )
 
         rule = events.Rule(

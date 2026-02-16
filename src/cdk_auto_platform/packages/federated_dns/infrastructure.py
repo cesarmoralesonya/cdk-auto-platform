@@ -8,7 +8,6 @@ from aws_cdk import (
     aws_route53 as route53,
 )
 
-
 """
 The pricing of hosted zone is $0.50 per month for the first 25 hosted zones,
 and $0.10 per month for additional hosted zones.
@@ -21,17 +20,13 @@ class FederatedDns(Construct):
     ):
         super().__init__(scope, "federated-dns", **kwargs)
 
-        FEDERATED_ZONE_ID = (
-            f"main-{tenant.company}-{tenant.product.value}-{tenant.environment.value}-hosted-zone"
-        )
+        FEDERATED_ZONE_ID = f"main-{tenant.company}-{tenant.product.value}-{tenant.environment.value}-hosted-zone"
 
         self.main_zone = route53.PublicHostedZone.from_lookup(
             self, FEDERATED_ZONE_ID, domain_name=tenant.federated_dns
         )
 
-        PRIVATE_ZONE_ID = (
-            f"main-{tenant.company}-{tenant.product.value}-{tenant.environment.value}-private-zone"
-        )
+        PRIVATE_ZONE_ID = f"main-{tenant.company}-{tenant.product.value}-{tenant.environment.value}-private-zone"
 
         self.private_zone = route53.PrivateHostedZone(
             self, PRIVATE_ZONE_ID, vpc=tenant_vpc, zone_name=tenant.private_dns

@@ -64,7 +64,9 @@ class InstanceOperations(Construct):
     ):
         super().__init__(scope, "instance-operations", **kwargs)
 
-        environment_name = f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}"
+        environment_name = (
+            f"{tenant.company}-{tenant.product.value}-{tenant.environment.value}"
+        )
         INSTANCE_OPERATIONS_SECURITY_GROUP_NAME = (
             f"{environment_name}-instance-operations-security-group"
         )
